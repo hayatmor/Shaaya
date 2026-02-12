@@ -294,15 +294,16 @@ const GalleryPage = () => {
         {/* Notch / Dynamic Island */}
         <div className="absolute top-2 sm:top-2.5 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-4 sm:h-5 bg-black rounded-full z-20 border border-zinc-700/50"></div>
         {/* Screen */}
-        <div className="rounded-[1.6rem] sm:rounded-[2rem] overflow-hidden bg-black">
+        <div className="rounded-[1.6rem] sm:rounded-[2rem] overflow-hidden bg-black" style={{ WebkitTransform: 'translateZ(0)' }}>
           <div className="reel-embed-wrapper aspect-[9/16] w-full">
             <iframe
               src={`https://www.instagram.com/reel/${reel.id}/embed/`}
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen"
               allowFullScreen
               scrolling="no"
               loading="lazy"
               title={reel.title}
+              style={{ pointerEvents: 'auto' }}
             />
           </div>
         </div>

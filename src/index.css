@@ -109,7 +109,7 @@ body::-webkit-scrollbar-thumb {
   animation: shimmer 3s ease-in-out infinite;
 }
 
-/* Instagram reel embed - hide header/footer by scaling into video area */
+/* Instagram reel embed - hide header/footer */
 .reel-embed-wrapper {
   position: relative;
   overflow: hidden;
@@ -117,6 +117,7 @@ body::-webkit-scrollbar-thumb {
   background: #080808;
 }
 
+/* Desktop: use scale to zoom into video area */
 .reel-embed-wrapper iframe {
   position: absolute;
   top: 0;
@@ -128,10 +129,22 @@ body::-webkit-scrollbar-thumb {
   transform-origin: center 28%;
 }
 
-/* On mobile: use less aggressive scale for better touch/interaction */
+/* 
+  Mobile/iOS: DO NOT use transform on iframes - it breaks touch events on iOS Safari.
+  Instead use negative positioning + overflow hidden to crop header/footer.
+  This preserves native touch coordinates so play buttons work.
+*/
 @media screen and (max-width: 768px) {
+  .reel-embed-wrapper {
+    /* Ensure touch events pass through to iframe */
+    -webkit-overflow-scrolling: auto;
+  }
+  
   .reel-embed-wrapper iframe {
-    transform: scale(1.35);
-    transform-origin: center 30%;
+    transform: none;
+    top: -58px;
+    left: 0;
+    width: 100%;
+    height: calc(100% + 350px);
   }
 }
