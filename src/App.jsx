@@ -290,12 +290,11 @@ const GalleryPage = () => {
   const ReelCard = ({ reel }) => (
     <div className="group flex flex-col items-center">
       {/* iPhone frame */}
-      <a href={`https://www.instagram.com/reel/${reel.id}/`} target="_blank" rel="noopener noreferrer"
-        className="relative rounded-[2rem] sm:rounded-[2.5rem] border-[3px] sm:border-4 border-zinc-600 bg-black p-1 sm:p-1.5 shadow-lg shadow-black/50 transition-all duration-300 group-hover:border-zinc-400 group-hover:shadow-xl group-hover:shadow-black/60 w-full block">
+      <div className="relative rounded-[2rem] sm:rounded-[2.5rem] border-[3px] sm:border-4 border-zinc-600 bg-black p-1 sm:p-1.5 shadow-lg shadow-black/50 transition-all duration-300 group-hover:border-zinc-400 group-hover:shadow-xl group-hover:shadow-black/60 w-full">
         {/* Notch / Dynamic Island */}
         <div className="absolute top-2 sm:top-2.5 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-4 sm:h-5 bg-black rounded-full z-20 border border-zinc-700/50"></div>
         {/* Screen */}
-        <div className="rounded-[1.6rem] sm:rounded-[2rem] overflow-hidden bg-black relative">
+        <div className="rounded-[1.6rem] sm:rounded-[2rem] overflow-hidden bg-black">
           <div className="reel-embed-wrapper aspect-[9/16] w-full">
             <iframe
               src={`https://www.instagram.com/reel/${reel.id}/embed/`}
@@ -306,18 +305,12 @@ const GalleryPage = () => {
               title={reel.title}
             />
           </div>
-          {/* Tap overlay for mobile - opens in Instagram */}
-          <div className="absolute inset-0 z-10 sm:hidden flex items-center justify-center">
-            <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
-              <Play size={20} className="fill-white text-white ml-0.5" />
-            </div>
-          </div>
         </div>
         {/* Bottom bar indicator */}
         <div className="flex justify-center py-1 sm:py-1.5">
           <div className="w-1/3 h-1 bg-zinc-600 rounded-full"></div>
         </div>
-      </a>
+      </div>
       {/* Title below phone */}
       <div className="mt-2.5 sm:mt-3">
         <p className="text-[11px] sm:text-xs text-zinc-300 font-light text-center leading-snug">{reel.title}</p>
