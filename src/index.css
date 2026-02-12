@@ -109,7 +109,7 @@ body::-webkit-scrollbar-thumb {
   animation: shimmer 3s ease-in-out infinite;
 }
 
-/* Instagram reel embed - hide header/footer */
+/* Instagram reel embed - hide header/footer by scaling into video area */
 .reel-embed-wrapper {
   position: relative;
   overflow: hidden;
@@ -117,7 +117,6 @@ body::-webkit-scrollbar-thumb {
   background: #080808;
 }
 
-/* Desktop: use scale to zoom into video area (mouse clicks work fine with transforms) */
 .reel-embed-wrapper iframe {
   position: absolute;
   top: 0;
@@ -129,25 +128,10 @@ body::-webkit-scrollbar-thumb {
   transform-origin: center 28%;
 }
 
-/* 
-  Mobile/iOS Safari fix:
-  - NO transform on iframe (breaks touch event coordinates on iOS)
-  - NO negative positioning (shifts touch targets)
-  - Render iframe at natural position so touch targets align perfectly
-  - Use clip-path on the WRAPPER to visually crop header/footer
-    (clip-path is purely visual - doesn't affect touch hit testing)
-*/
+/* On mobile: use less aggressive scale for better touch/interaction */
 @media screen and (max-width: 768px) {
-  .reel-embed-wrapper {
-    clip-path: inset(8% 0 25% 0 round 8px);
-  }
-  
   .reel-embed-wrapper iframe {
-    transform: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    transform: scale(1.35);
+    transform-origin: center 30%;
   }
 }
