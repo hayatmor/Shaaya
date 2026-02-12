@@ -165,7 +165,7 @@ const ContactModal = ({ isOpen, onClose, preselectedInterest = '' }) => {
 const HomePage = ({ isMusicPlaying, videoRef }) => (
   <div className="relative h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden">
     <div className="absolute inset-0 bg-black">
-      <video ref={videoRef} autoPlay muted loop playsInline preload="auto" className="w-full h-full object-cover opacity-50">
+      <video ref={videoRef} autoPlay loop playsInline preload="auto" className="w-full h-full object-cover opacity-50">
         <source src="/background.mp4" type="video/mp4" />
       </video>
     </div>
@@ -488,7 +488,7 @@ const App = () => {
   const [scrolled, setScrolled] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [contactModalInterest, setContactModalInterest] = useState('');
-  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(true);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const videoRef = useRef(null);
 
@@ -498,63 +498,59 @@ const App = () => {
     return () => window.removeEventListener('scroll', h);
   }, []);
 
-  // Ensure video autoplay on mobile with retry
+  // Try to autoplay with sound. Browsers may block unmuted autoplay,
+  // so fall back to muted autoplay + unmute on first interaction.
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     const onPlaying = () => setIsVideoReady(true);
-    const onCanPlay = () => {
-      // Try to play if not already playing
-      if (video.paused) {
-        video.play().catch(() => {});
-      }
-    };
-
     video.addEventListener('playing', onPlaying);
-    video.addEventListener('canplay', onCanPlay);
 
-    // Retry play on user interaction (mobile requires gesture)
-    const retryPlay = () => {
-      if (video.paused) {
-        video.play().then(() => setIsVideoReady(true)).catch(() => {});
-      }
-    };
-    document.addEventListener('touchstart', retryPlay, { once: true, passive: true });
-    document.addEventListener('click', retryPlay, { once: true });
+    // First try: play unmuted (works if browser allows it)
+    video.muted = false;
+    video.play().then(() => {
+      setIsMusicPlaying(true);
+      setIsVideoReady(true);
+    }).catch(() => {
+      // Browser blocked unmuted autoplay - fall back to muted
+      video.muted = true;
+      setIsMusicPlaying(false);
+      video.play().catch(() => {});
 
-    // Also retry after a short delay
-    const timer = setTimeout(() => {
-      if (video.paused) {
-        video.play().catch(() => {});
-      }
-    }, 1000);
+      // Unmute on first user interaction
+      const enableAudio = () => {
+        video.muted = false;
+        if (video.paused) video.play().catch(() => {});
+        setIsMusicPlaying(true);
+        setIsVideoReady(true);
+      };
+      document.addEventListener('touchstart', enableAudio, { once: true, passive: true });
+      document.addEventListener('click', enableAudio, { once: true });
+    });
 
     return () => {
       video.removeEventListener('playing', onPlaying);
-      video.removeEventListener('canplay', onCanPlay);
-      document.removeEventListener('touchstart', retryPlay);
-      document.removeEventListener('click', retryPlay);
-      clearTimeout(timer);
     };
   }, []);
 
   const toggleMusic = () => {
     const v = videoRef.current;
     if (!v) return;
-    // If video is paused, try to play it first
-    if (v.paused) {
-      v.play().catch(() => {});
-    }
+    if (v.paused) v.play().catch(() => {});
     if (isMusicPlaying) { v.muted = true; setIsMusicPlaying(false); }
     else { v.muted = false; setIsMusicPlaying(true); }
   };
 
+  // Lock scroll on home page, allow on other pages
   useEffect(() => {
-    if (isMenuOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
+    if (activePage === 'home' || isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
     return () => { document.body.style.overflow = ''; };
-  }, [isMenuOpen]);
+  }, [activePage, isMenuOpen]);
 
   useEffect(() => {
     if (activePage !== 'home' && isMusicPlaying) {
