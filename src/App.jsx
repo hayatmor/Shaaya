@@ -20,7 +20,9 @@ import {
   CheckCircle,
   Loader2,
   Sparkles,
-  Calendar
+  Calendar,
+  Volume2,
+  VolumeX
 } from 'lucide-react';
 
 // --- TikTok SVG Icon (not in lucide) ---
@@ -146,11 +148,25 @@ const ContactModal = ({ isOpen, onClose, preselectedInterest = '' }) => {
   }, [isOpen, preselectedInterest]);
 
   const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    // For phone, only allow digits and limit to 10 characters
+    if (name === 'phone') {
+      const digitsOnly = value.replace(/\D/g, '').slice(0, 10);
+      setFormData(prev => ({ ...prev, [name]: digitsOnly }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Validate phone is exactly 10 digits
+    if (formData.phone.length !== 10) {
+      alert('מספר הטלפון חייב להכיל 10 ספרות');
+      return;
+    }
+    
     setStatus('sending');
 
     const whatsappMessage = `*פנייה חדשה מהאתר* 🎵\n\n*שם:* ${formData.name}\n*טלפון:* ${formData.phone}\n*סוג התעניינות:* ${formData.interest}\n\n*הודעה:*\n${formData.message}`;
@@ -206,8 +222,11 @@ const ContactModal = ({ isOpen, onClose, preselectedInterest = '' }) => {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            placeholder="טלפון" 
+            placeholder="טלפון (10 ספרות)" 
             required
+            pattern="\d{10}"
+            minLength="10"
+            maxLength="10"
             className="w-full bg-transparent border-b border-zinc-800 focus:border-zinc-400 outline-none py-3 text-white font-light transition-colors placeholder:text-zinc-700 text-base" 
           />
           <select 
@@ -274,56 +293,54 @@ const ContactModal = ({ isOpen, onClose, preselectedInterest = '' }) => {
 
 // --- Pages ---
 
-const HomePage = () => (
-  <div className="relative min-h-screen h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden -mt-20 sm:-mt-24">
-    {/* Video Background Layer */}
-    <div className="absolute inset-0 bg-black">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        className="w-full h-full object-cover opacity-50"
-      >
-        <source src="/background.mp4" type="video/mp4" />
-      </video>
-    </div>
-    
-    <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[#050505]" />
-
-    <div className="relative z-20 text-center px-4 sm:px-6 max-w-5xl space-y-5 sm:space-y-8 animate-slide-up">
-      <p className="text-zinc-400 tracking-[0.2em] sm:tracking-[0.3em] text-xs sm:text-sm md:text-base uppercase mb-2 sm:mb-4 drop-shadow-lg">Handpan Artist & Musician</p>
-      <img 
-        src="/logo-transparent.png" 
-        alt="SHAAYA" 
-        className="h-20 sm:h-28 md:h-44 lg:h-56 w-auto mx-auto drop-shadow-2xl object-contain"
-      />
-      <p className="text-base sm:text-lg md:text-2xl font-light text-zinc-200 max-w-2xl mx-auto leading-relaxed drop-shadow-md px-2">
-        מסע מוזיקלי של הקשבה, קצב וחיבור.
-        <br />
-        המנגינה תלווה אותנו תמיד.
-      </p>
-      
-      <div className="pt-4 sm:pt-8 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-        <a 
-          href="https://wa.me/972526464647"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-6 sm:px-8 py-3 border border-white/30 bg-white/5 backdrop-blur-sm hover:bg-white hover:text-black active:bg-white active:text-black transition-all duration-300 rounded-full tracking-widest text-xs sm:text-sm uppercase flex items-center gap-3 min-h-[48px]"
+const HomePage = ({ isMusicPlaying, videoRef }) => {
+  return (
+    <div className="relative h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden">
+      {/* Video Background Layer with Audio */}
+      <div className="absolute inset-0 bg-black">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover opacity-50"
         >
-          <WhatsAppIcon size={18} />
-          ליצירת קשר
-        </a>
+          <source src="/background.mp4" type="video/mp4" />
+        </video>
       </div>
+      
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[#050505]" />
 
-      {/* Scroll indicator - hidden on very short screens */}
-      <div className="pt-6 sm:pt-12 animate-bounce hidden sm:block">
-        <ChevronDown size={24} className="mx-auto text-zinc-500" />
+      <div className="relative z-20 text-center px-4 sm:px-6 max-w-5xl space-y-3 sm:space-y-5 animate-slide-up mt-16 sm:mt-20">
+        <p className="text-zinc-400 tracking-[0.2em] sm:tracking-[0.3em] text-xs sm:text-sm uppercase drop-shadow-lg">Handpan Artist & Musician</p>
+        <img 
+          src="/logo-transparent.png" 
+          alt="SHAAYA" 
+          className="h-16 sm:h-24 md:h-32 lg:h-40 w-auto mx-auto drop-shadow-2xl object-contain"
+        />
+        <p className="text-sm sm:text-base md:text-lg font-light text-zinc-200 max-w-xl mx-auto leading-relaxed drop-shadow-md px-2">
+          מסע מוזיקלי של הקשבה, קצב וחיבור.
+          <br />
+          המנגינה תלווה אותנו תמיד.
+        </p>
+        
+        <div className="pt-3 sm:pt-5 flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a 
+            href="https://wa.me/972526464647"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 sm:px-8 py-3 border border-white/30 bg-white/5 backdrop-blur-sm hover:bg-white hover:text-black active:bg-white active:text-black transition-all duration-300 rounded-full tracking-widest text-xs sm:text-sm uppercase flex items-center gap-3 min-h-[48px]"
+          >
+            <WhatsAppIcon size={18} />
+            ליצירת קשר
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const AboutPage = () => (
   <PageTransition>
@@ -425,36 +442,36 @@ const ServicesPage = ({ onOpenContactModal }) => {
   return (
     <PageTransition>
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
-        <div className="text-center mb-10 sm:mb-16 space-y-3 sm:space-y-4">
+        <div className="text-center mb-6 sm:mb-8 space-y-2">
            <span className="text-xs tracking-[0.2em] text-zinc-500 uppercase">Experiences</span>
-           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-white">סדנאות והופעות</h2>
-           <p className="text-zinc-400 max-w-2xl mx-auto font-light text-sm sm:text-base px-2">מגוון אפשרויות למפגש עם עולם הפאנטם, מותאמות לכל הרכב ולכל מטרה</p>
+           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-white">סדנאות והופעות</h2>
+           <p className="text-zinc-400 max-w-2xl mx-auto font-light text-xs sm:text-sm px-2">מגוון אפשרויות למפגש עם עולם הפאנטם</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map((service, idx) => (
             <div 
               key={idx} 
-              className={`group p-6 sm:p-8 md:p-10 border border-white/5 hover:border-white/20 active:border-white/20 bg-[#080808] transition-all duration-500 md:hover:-translate-y-1 flex flex-col ${service.highlight ? 'md:col-span-2 bg-gradient-to-r from-zinc-900 to-[#080808]' : ''}`}
+              className="group p-4 sm:p-5 border border-white/5 hover:border-white/20 active:border-white/20 bg-[#080808] transition-all duration-300 flex flex-col"
             >
-              <div className="flex justify-between items-start mb-4 sm:mb-6">
-                 <div className="p-2.5 sm:p-3 bg-white/5 rounded-full text-zinc-300 group-hover:text-white transition-colors">
+              <div className="flex justify-between items-start mb-3">
+                 <div className="p-2 bg-white/5 rounded-full text-zinc-300 group-hover:text-white transition-colors">
                     {service.icon}
                  </div>
-                 {service.highlight && <span className="text-xs border border-white/20 px-3 py-1 rounded-full text-zinc-400">חדש</span>}
+                 {service.highlight && <span className="text-[10px] border border-white/20 px-2 py-0.5 rounded-full text-zinc-400">חדש</span>}
               </div>
               
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-light mb-2 sm:mb-3 text-white">{service.title}</h3>
-              <p className="text-zinc-500 font-medium mb-4 sm:mb-6 text-xs sm:text-sm tracking-wide">{service.subtitle}</p>
+              <h3 className="text-base sm:text-lg font-light mb-1.5 text-white">{service.title}</h3>
+              <p className="text-zinc-500 font-medium mb-3 text-[11px] sm:text-xs">{service.subtitle}</p>
               
-              <p className="text-zinc-400 leading-relaxed mb-6 sm:mb-8 font-light text-sm sm:text-base flex-grow">
+              <p className="text-zinc-400 leading-relaxed mb-4 font-light text-xs flex-grow line-clamp-4">
                 {service.description}
               </p>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 border-t border-white/5 pt-4 sm:pt-6 mb-6 sm:mb-8">
-                {service.details.map((detail, i) => (
-                  <div key={i} className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-zinc-500">
-                    <span className="w-1.5 h-1.5 bg-zinc-600 rounded-full flex-shrink-0"></span>
+              <div className="grid grid-cols-1 gap-y-1.5 border-t border-white/5 pt-3 mb-3">
+                {service.details.slice(0, 3).map((detail, i) => (
+                  <div key={i} className="flex items-center gap-2 text-[10px] sm:text-xs text-zinc-500">
+                    <span className="w-1 h-1 bg-zinc-600 rounded-full flex-shrink-0"></span>
                     {detail}
                   </div>
                 ))}
@@ -462,9 +479,9 @@ const ServicesPage = ({ onOpenContactModal }) => {
 
               <button 
                 onClick={() => onOpenContactModal(service.interestValue)}
-                className="self-start mt-auto flex items-center gap-2 text-white text-xs sm:text-sm tracking-widest border-b border-transparent group-hover:border-white active:border-white pb-1 transition-all min-h-[44px]"
+                className="w-full mt-auto flex items-center justify-center gap-2 text-white text-[11px] tracking-wider border border-white/10 hover:bg-white hover:text-black active:bg-white active:text-black py-2.5 transition-all"
               >
-                {service.ctaText} <ArrowRight size={14} className="rotate-180" />
+                {service.ctaText}
               </button>
             </div>
           ))}
@@ -529,14 +546,14 @@ const RecommendationsPage = () => {
     <PageTransition>
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
          {/* Header */}
-         <div className="text-center mb-10 sm:mb-16 space-y-3 sm:space-y-4">
+         <div className="text-center mb-6 sm:mb-8 space-y-2">
              <span className="text-xs tracking-[0.2em] text-zinc-500 uppercase">Testimonials</span>
-             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-white">מה אומרים עליי</h2>
-             <p className="text-zinc-500 font-light text-sm sm:text-base max-w-lg mx-auto">חלק מהמילים היפות שקיבלתי מתלמידים ומשתתפים</p>
+             <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-white">מה אומרים עליי</h2>
+             <p className="text-zinc-500 font-light text-xs sm:text-sm max-w-lg mx-auto">חלק מהמילים היפות שקיבלתי מתלמידים ומשתתפים</p>
          </div>
 
          {/* Masonry-style grid */}
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {testimonials.map((t, i) => (
               <div 
                 key={i} 
@@ -546,41 +563,36 @@ const RecommendationsPage = () => {
                 }`}
               >
                 {/* Decorative accent */}
-                <div className={`absolute top-0 right-0 w-24 h-24 opacity-[0.03] ${
-                  i === 0 ? 'w-32 h-32' : ''
+                <div className={`absolute top-0 left-0 w-20 h-20 opacity-[0.02] ${
+                  i === 0 ? 'w-24 h-24' : ''
                 }`}>
                   <Quote className="w-full h-full" />
                 </div>
                 
-                <div className={`relative z-10 p-6 sm:p-8 ${i === 0 ? 'sm:p-10 flex flex-col justify-between h-full' : ''}`}>
+                <div className={`relative z-10 p-4 sm:p-6 ${i === 0 ? 'sm:p-7 flex flex-col justify-between h-full' : ''}`}>
                   {/* Quote icon */}
-                  <div className={`mb-4 sm:mb-6 ${i === 0 ? 'mb-6 sm:mb-8' : ''}`}>
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                      <Quote size={i === 0 ? 18 : 14} className="text-zinc-500" />
+                  <div className={`mb-3 sm:mb-4 ${i === 0 ? 'mb-4 sm:mb-5' : ''}`}>
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                      <Quote size={i === 0 ? 16 : 12} className="text-zinc-500" />
                     </div>
                   </div>
 
                   {/* Quote text */}
-                  <p className={`leading-relaxed font-light text-zinc-300 mb-6 sm:mb-8 ${
+                  <p className={`leading-relaxed font-light text-zinc-300 mb-4 sm:mb-5 ${
                     i === 0 
-                      ? 'text-lg sm:text-xl md:text-2xl font-serif italic' 
-                      : 'text-base sm:text-lg'
+                      ? 'text-base sm:text-lg md:text-xl font-serif italic' 
+                      : 'text-sm sm:text-base'
                   }`}>
                     &ldquo;{t.text}&rdquo;
                   </p>
 
                   {/* Author */}
-                  <div className="flex items-center gap-3 sm:gap-4 mt-auto">
-                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs sm:text-sm text-zinc-400 font-medium flex-shrink-0">
+                  <div className="flex items-center gap-2.5 mt-auto">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs text-zinc-400 font-medium flex-shrink-0">
                       {t.initials}
                     </div>
                     <div>
-                      <p className="text-sm sm:text-base font-medium text-white">{t.name}</p>
-                      <div className="flex gap-0.5 mt-1">
-                        {[...Array(5)].map((_, s) => (
-                          <Star key={s} size={12} className="fill-zinc-600 text-zinc-600" />
-                        ))}
-                      </div>
+                      <p className="text-xs sm:text-sm font-medium text-white">{t.name}</p>
                     </div>
                   </div>
                 </div>
@@ -603,11 +615,25 @@ const ContactPage = () => {
   const [status, setStatus] = useState('idle');
 
   const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    // For phone, only allow digits and limit to 10 characters
+    if (name === 'phone') {
+      const digitsOnly = value.replace(/\D/g, '').slice(0, 10);
+      setFormData(prev => ({ ...prev, [name]: digitsOnly }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Validate phone is exactly 10 digits
+    if (formData.phone.length !== 10) {
+      alert('מספר הטלפון חייב להכיל 10 ספרות');
+      return;
+    }
+    
     setStatus('sending');
 
     const whatsappMessage = `*פנייה חדשה מהאתר* 🎵\n\n*שם:* ${formData.name}\n*טלפון:* ${formData.phone}\n*סוג התעניינות:* ${formData.interest}\n\n*הודעה:*\n${formData.message}`;
@@ -676,8 +702,11 @@ const ContactPage = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="טלפון" 
+                placeholder="טלפון (10 ספרות)" 
                 required
+                pattern="\d{10}"
+                minLength="10"
+                maxLength="10"
                 className="w-full bg-transparent border-b border-zinc-800 focus:border-zinc-400 outline-none py-3 sm:py-4 text-white font-light transition-colors placeholder:text-zinc-700 text-base" 
               />
             </div>
@@ -713,7 +742,7 @@ const ContactPage = () => {
             <button 
               type="submit"
               disabled={status === 'sending'}
-              className={`w-full sm:w-auto px-10 sm:px-12 py-4 border border-zinc-700 text-white hover:bg-white hover:text-black active:bg-white active:text-black transition-all duration-500 tracking-widest text-sm uppercase flex items-center justify-center sm:justify-start gap-3 min-h-[48px] ${
+              className={`w-full px-10 sm:px-12 py-4 border border-zinc-700 text-white hover:bg-white hover:text-black active:bg-white active:text-black transition-all duration-500 tracking-widest text-sm uppercase flex items-center justify-center gap-3 min-h-[48px] ${
                 status === 'sending' ? 'opacity-50 cursor-not-allowed' : ''
               } ${status === 'sent' ? 'border-green-500/50 text-green-400' : ''}`}
             >
@@ -757,6 +786,9 @@ const App = () => {
   const [scrolled, setScrolled] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [contactModalInterest, setContactModalInterest] = useState('');
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  
+  const videoRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -765,6 +797,20 @@ const App = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Toggle music (unmute/mute video audio)
+  const toggleMusic = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isMusicPlaying) {
+      video.muted = true;
+      setIsMusicPlaying(false);
+    } else {
+      video.muted = false;
+      setIsMusicPlaying(true);
+    }
+  };
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -775,6 +821,17 @@ const App = () => {
     }
     return () => { document.body.style.overflow = ''; };
   }, [isMenuOpen]);
+
+  // Mute video when leaving home page
+  useEffect(() => {
+    if (activePage !== 'home' && isMusicPlaying) {
+      const video = videoRef.current;
+      if (video) {
+        video.muted = true;
+        setIsMusicPlaying(false);
+      }
+    }
+  }, [activePage, isMusicPlaying]);
 
   const navigateTo = (page) => {
     setActivePage(page);
@@ -803,13 +860,13 @@ const App = () => {
 
   const renderPage = () => {
     switch(activePage) {
-      case 'home': return <HomePage />;
+      case 'home': return <HomePage isMusicPlaying={isMusicPlaying} videoRef={videoRef} />;
       case 'about': return <AboutPage />;
       case 'services': return <ServicesPage onOpenContactModal={openContactModal} />;
       case 'gallery': return <GalleryPage />;
       case 'recommendations': return <RecommendationsPage />;
       case 'contact': return <ContactPage />;
-      default: return <HomePage />;
+      default: return <HomePage isMusicPlaying={isMusicPlaying} videoRef={videoRef} />;
     }
   };
 
@@ -900,16 +957,22 @@ const App = () => {
         </footer>
       )}
 
-      {/* Floating WhatsApp Button */}
-      <a 
-        href="https://wa.me/972526464647" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="fixed bottom-5 left-5 sm:bottom-8 sm:left-8 z-50 bg-white/5 backdrop-blur-md border border-white/10 text-white p-3.5 sm:p-4 rounded-full hover:bg-white hover:text-black active:bg-white active:text-black transition-all duration-500 group min-w-[48px] min-h-[48px] flex items-center justify-center"
-        aria-label="WhatsApp"
+      {/* Floating Music Button */}
+      <button 
+        onClick={toggleMusic}
+        className={`fixed bottom-5 left-5 sm:bottom-8 sm:left-8 z-50 backdrop-blur-md border text-white p-3.5 sm:p-4 rounded-full transition-all duration-500 group min-w-[48px] min-h-[48px] flex items-center justify-center ${
+          isMusicPlaying 
+            ? 'bg-white/10 border-white/20 hover:bg-white/15' 
+            : 'bg-white/5 border-white/10 hover:bg-white hover:text-black'
+        }`}
+        aria-label={isMusicPlaying ? 'השתק מוזיקה' : 'הפעל מוזיקה'}
       >
-        <MessageCircle size={22} className="group-hover:scale-110 transition-transform" />
-      </a>
+        {isMusicPlaying ? (
+          <Volume2 size={22} className="group-hover:scale-110 transition-transform" />
+        ) : (
+          <VolumeX size={22} className="group-hover:scale-110 transition-transform" />
+        )}
+      </button>
 
       {/* Contact Modal (for service cards) */}
       <ContactModal 
