@@ -290,26 +290,34 @@ const GalleryPage = () => {
   const ReelCard = ({ reel }) => (
     <div className="group flex flex-col items-center">
       {/* iPhone frame */}
-      <div className="relative rounded-[2rem] sm:rounded-[2.5rem] border-[3px] sm:border-4 border-zinc-600 bg-black p-1 sm:p-1.5 shadow-lg shadow-black/50 transition-all duration-300 group-hover:border-zinc-400 group-hover:shadow-xl group-hover:shadow-black/60 w-full">
+      <a href={`https://www.instagram.com/reel/${reel.id}/`} target="_blank" rel="noopener noreferrer"
+        className="relative rounded-[2rem] sm:rounded-[2.5rem] border-[3px] sm:border-4 border-zinc-600 bg-black p-1 sm:p-1.5 shadow-lg shadow-black/50 transition-all duration-300 group-hover:border-zinc-400 group-hover:shadow-xl group-hover:shadow-black/60 w-full block">
         {/* Notch / Dynamic Island */}
         <div className="absolute top-2 sm:top-2.5 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-4 sm:h-5 bg-black rounded-full z-20 border border-zinc-700/50"></div>
         {/* Screen */}
-        <div className="rounded-[1.6rem] sm:rounded-[2rem] overflow-hidden bg-black">
+        <div className="rounded-[1.6rem] sm:rounded-[2rem] overflow-hidden bg-black relative">
           <div className="reel-embed-wrapper aspect-[9/16] w-full">
             <iframe
               src={`https://www.instagram.com/reel/${reel.id}/embed/`}
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
               allowFullScreen
               scrolling="no"
               loading="lazy"
               title={reel.title}
             />
           </div>
+          {/* Tap overlay for mobile - opens in Instagram */}
+          <div className="absolute inset-0 z-10 sm:hidden flex items-center justify-center">
+            <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
+              <Play size={20} className="fill-white text-white ml-0.5" />
+            </div>
+          </div>
         </div>
         {/* Bottom bar indicator */}
         <div className="flex justify-center py-1 sm:py-1.5">
           <div className="w-1/3 h-1 bg-zinc-600 rounded-full"></div>
         </div>
-      </div>
+      </a>
       {/* Title below phone */}
       <div className="mt-2.5 sm:mt-3">
         <p className="text-[11px] sm:text-xs text-zinc-300 font-light text-center leading-snug">{reel.title}</p>
@@ -481,6 +489,7 @@ const App = () => {
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [contactModalInterest, setContactModalInterest] = useState('');
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -489,9 +498,54 @@ const App = () => {
     return () => window.removeEventListener('scroll', h);
   }, []);
 
+  // Ensure video autoplay on mobile with retry
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const onPlaying = () => setIsVideoReady(true);
+    const onCanPlay = () => {
+      // Try to play if not already playing
+      if (video.paused) {
+        video.play().catch(() => {});
+      }
+    };
+
+    video.addEventListener('playing', onPlaying);
+    video.addEventListener('canplay', onCanPlay);
+
+    // Retry play on user interaction (mobile requires gesture)
+    const retryPlay = () => {
+      if (video.paused) {
+        video.play().then(() => setIsVideoReady(true)).catch(() => {});
+      }
+    };
+    document.addEventListener('touchstart', retryPlay, { once: true, passive: true });
+    document.addEventListener('click', retryPlay, { once: true });
+
+    // Also retry after a short delay
+    const timer = setTimeout(() => {
+      if (video.paused) {
+        video.play().catch(() => {});
+      }
+    }, 1000);
+
+    return () => {
+      video.removeEventListener('playing', onPlaying);
+      video.removeEventListener('canplay', onCanPlay);
+      document.removeEventListener('touchstart', retryPlay);
+      document.removeEventListener('click', retryPlay);
+      clearTimeout(timer);
+    };
+  }, []);
+
   const toggleMusic = () => {
     const v = videoRef.current;
     if (!v) return;
+    // If video is paused, try to play it first
+    if (v.paused) {
+      v.play().catch(() => {});
+    }
     if (isMusicPlaying) { v.muted = true; setIsMusicPlaying(false); }
     else { v.muted = false; setIsMusicPlaying(true); }
   };
@@ -577,10 +631,10 @@ const App = () => {
         </footer>
       )}
 
-      {/* Floating Music Button - only on home page */}
-      {activePage === 'home' && (
+      {/* Floating Music Button - only on home page when video is ready */}
+      {activePage === 'home' && isVideoReady && (
         <button onClick={toggleMusic}
-          className={`fixed bottom-5 left-5 sm:bottom-8 sm:left-8 z-50 backdrop-blur-md border text-white p-3.5 sm:p-4 rounded-full transition-all duration-500 group min-w-[48px] min-h-[48px] flex items-center justify-center ${isMusicPlaying ? 'bg-white/10 border-white/20' : 'bg-white/5 border-white/10 hover:bg-white hover:text-black'}`}
+          className={`fixed bottom-5 left-5 sm:bottom-8 sm:left-8 z-50 backdrop-blur-md border text-white p-3.5 sm:p-4 rounded-full transition-all duration-500 group min-w-[48px] min-h-[48px] flex items-center justify-center animate-fade-in ${isMusicPlaying ? 'bg-white/10 border-white/20' : 'bg-white/5 border-white/10 hover:bg-white hover:text-black'}`}
           aria-label={isMusicPlaying ? 'השתק מוזיקה' : 'הפעל מוזיקה'}>
           {isMusicPlaying ? <Volume2 size={22} className="group-hover:scale-110 transition-transform" /> : <VolumeX size={22} className="group-hover:scale-110 transition-transform" />}
         </button>

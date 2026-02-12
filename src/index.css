@@ -127,3 +127,11 @@ body::-webkit-scrollbar-thumb {
   transform: scale(1.45);
   transform-origin: center 28%;
 }
+
+/* On mobile: use less aggressive scale for better touch/interaction */
+@media screen and (max-width: 768px) {
+  .reel-embed-wrapper iframe {
+    transform: scale(1.35);
+    transform-origin: center 30%;
+  }
+}
