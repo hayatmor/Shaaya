@@ -291,10 +291,10 @@ const GalleryPage = () => {
     <div className="group flex flex-col items-center">
       {/* iPhone frame */}
       <div className="relative rounded-[2rem] sm:rounded-[2.5rem] border-[3px] sm:border-4 border-zinc-600 bg-black p-1 sm:p-1.5 shadow-lg shadow-black/50 transition-all duration-300 group-hover:border-zinc-400 group-hover:shadow-xl group-hover:shadow-black/60 w-full">
-        {/* Notch / Dynamic Island */}
-        <div className="absolute top-2 sm:top-2.5 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-4 sm:h-5 bg-black rounded-full z-20 border border-zinc-700/50"></div>
-        {/* Screen */}
-        <div className="rounded-[1.6rem] sm:rounded-[2rem] overflow-hidden bg-black" style={{ WebkitTransform: 'translateZ(0)' }}>
+        {/* Notch / Dynamic Island - pointer-events-none so taps pass through to iframe */}
+        <div className="absolute top-2 sm:top-2.5 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-4 sm:h-5 bg-black rounded-full z-20 border border-zinc-700/50 pointer-events-none"></div>
+        {/* Screen - no transforms that could break iOS iframe touch */}
+        <div className="rounded-[1.6rem] sm:rounded-[2rem] overflow-hidden bg-black">
           <div className="reel-embed-wrapper aspect-[9/16] w-full">
             <iframe
               src={`https://www.instagram.com/reel/${reel.id}/embed/`}
@@ -303,12 +303,11 @@ const GalleryPage = () => {
               scrolling="no"
               loading="lazy"
               title={reel.title}
-              style={{ pointerEvents: 'auto' }}
             />
           </div>
         </div>
-        {/* Bottom bar indicator */}
-        <div className="flex justify-center py-1 sm:py-1.5">
+        {/* Bottom bar indicator - pointer-events-none */}
+        <div className="flex justify-center py-1 sm:py-1.5 pointer-events-none">
           <div className="w-1/3 h-1 bg-zinc-600 rounded-full"></div>
         </div>
       </div>

@@ -117,7 +117,7 @@ body::-webkit-scrollbar-thumb {
   background: #080808;
 }
 
-/* Desktop: use scale to zoom into video area */
+/* Desktop: use scale to zoom into video area (mouse clicks work fine with transforms) */
 .reel-embed-wrapper iframe {
   position: absolute;
   top: 0;
@@ -130,21 +130,24 @@ body::-webkit-scrollbar-thumb {
 }
 
 /* 
-  Mobile/iOS: DO NOT use transform on iframes - it breaks touch events on iOS Safari.
-  Instead use negative positioning + overflow hidden to crop header/footer.
-  This preserves native touch coordinates so play buttons work.
+  Mobile/iOS Safari fix:
+  - NO transform on iframe (breaks touch event coordinates on iOS)
+  - NO negative positioning (shifts touch targets)
+  - Render iframe at natural position so touch targets align perfectly
+  - Use clip-path on the WRAPPER to visually crop header/footer
+    (clip-path is purely visual - doesn't affect touch hit testing)
 */
 @media screen and (max-width: 768px) {
   .reel-embed-wrapper {
-    /* Ensure touch events pass through to iframe */
-    -webkit-overflow-scrolling: auto;
+    clip-path: inset(8% 0 25% 0 round 8px);
   }
   
   .reel-embed-wrapper iframe {
     transform: none;
-    top: -58px;
+    position: absolute;
+    top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% + 350px);
+    height: 100%;
   }
 }
