@@ -1,0 +1,146 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über mich",
+    "services": "Workshops & Shows",
+    "gallery": "Videos",
+    "music": "Musik",
+    "recommendations": "Empfehlungen",
+    "contact": "Kontakt"
+  },
+  "home": {
+    "subtitle": "Handpan Artist & Musician",
+    "tagline1": "Eine musikalische Reise des Zuhörens, Rhythmus & ",
+    "tagline1gold": "Verbindung",
+    "tagline2": "Die Melodie wird uns ",
+    "tagline2gold": "immer",
+    "tagline2rest": " begleiten",
+    "cta": "Kontakt aufnehmen",
+    "latestRelease": "Neuerscheinung",
+    "listenNow": "Jetzt anhören",
+    "muteMusic": "Musik stumm schalten",
+    "playMusic": "Musik abspielen"
+  },
+  "about": {
+    "label": "Über mich",
+    "title1": "Hallo, ich bin ",
+    "titleGold": "Daniel",
+    "titleShaaya": "(Shaaya)",
+    "bio1": "Vater, Familienmensch und Schlagzeuger aus Leidenschaft. Meine ",
+    "bio1gold": "Liebe",
+    "bio1rest": " zur Musik begann im Alter von sechs Jahren, als ich mich beim Trommeln nicht mehr stoppen konnte, und schon damals war mir klar, dass Musik ein fester Bestandteil meines Lebens sein würde.",
+    "bio2pre": "Dem ",
+    "bio2gold": "Handpan",
+    "bio2rest": " begegnete ich zum ersten Mal mit 17, aber erst 2019 kaufte ich mein erstes Instrument — und vom Moment an, als die ersten Töne meine Finger berührten, begann eine tiefe Liebesgeschichte.",
+    "bio3": "Seitdem trete ich auf, unterrichte, leite Workshops und begleite Veranstaltungen mit dem einzigartigen Klang des Handpan — eines Instruments, das Zartheit, Tiefe, Meditativität und seltene Zugänglichkeit vereint. Ich glaube, dass wir alle einen Raum für Zuhören, Ruhe, ",
+    "bio3gold": "Kreativität",
+    "bio3rest": " und Verbindung verdienen.",
+    "list1": "Intime Auftritte und Veranstaltungen",
+    "list2": "Handpan-Workshops (Paare, Familien, Organisationen)",
+    "list3": "Privatunterricht und musikalische Begleitung"
+  },
+  "services": {
+    "label": "Erlebnisse",
+    "title": "Workshops",
+    "titleRest": " & Shows",
+    "subtitle": "Vielfältige Möglichkeiten, die Welt des ",
+    "subtitleGold": "Handpan",
+    "subtitleRest": " kennenzulernen",
+    "new": "Neu",
+    "items": [
+      {
+        "title": "Live-Events & Auftritte",
+        "subtitle": "Klänge, die die Zeit anhalten. Eine Atmosphäre, die die Seele berührt.",
+        "description": "Live-Musik, die jede Veranstaltung aufwertet und unvergesslich macht. Die Handpan-Klänge erzeugen eine einzigartige Frequenz von Ruhe, Feierlichkeit und Magie.",
+        "details": ["Individuell an den Charakter der Veranstaltung angepasst", "Schafft eine luxuriöse und bewegende Atmosphäre", "Professionelle Beschallungsanlage"],
+        "cta": "Details & Termin buchen"
+      },
+      {
+        "title": "Handpan-Workshop für Paare",
+        "subtitle": "Verbindung durch Klang. Liebe durch Musik.",
+        "description": "Ein intimer und bewegender Workshop, bei dem Sie die Fähigkeit der Musik entdecken, das Herz zu öffnen.",
+        "details": ["Dauer: 1,5 Stunden", "Nur ein Paar", "Preis: 600 ₪ (im Studio)"],
+        "cta": "Details & Anmeldung"
+      },
+      {
+        "title": "Familien-Workshop",
+        "subtitle": "Ein Moment der Verbindung. Ein Klang der Liebe.",
+        "description": "Eine Gelegenheit, dem Alltag zu entfliehen und gemeinsam durchzuatmen. Wir schaffen einen sicheren Raum, in dem jeder sich ausdrücken kann.",
+        "details": ["Dauer: 1,5 - 3 Stunden", "Mindestens 3 Teilnehmer", "Preis: 200-350 ₪ pro Person"],
+        "cta": "Details & Anmeldung"
+      },
+      {
+        "title": "Team-Workshop",
+        "subtitle": "Inspiration, Zuhören und gemeinsames Wachstum",
+        "description": "Ein musikalisches Erlebnis, das Menschen verbindet. Gemeinsam schaffen wir eine geteilte Harmonie.",
+        "details": ["Dauer: 1,5 Stunden", "Mindestens 5 Teilnehmer", "Geeignet für Organisationen"],
+        "cta": "Details & Anmeldung"
+      },
+      {
+        "title": "Privatunterricht",
+        "subtitle": "Persönliche Begleitung auf der musikalischen Reise",
+        "description": "Eine Reise der Selbstentdeckung durch Klang. Der Unterricht ist individuell angepasst.",
+        "details": ["Für alle Niveaus geeignet", "Technik- & Hörentwicklung", "Kreation & Improvisation"],
+        "cta": "Details & Anmeldung"
+      }
+    ],
+    "interestValues": ["Live-Events & Auftritte", "Paar-Workshop", "Familien-Workshop", "Team-Workshop", "Privatunterricht"]
+  },
+  "gallery": {
+    "label": "Galerie",
+    "title": "Video-",
+    "titleGold": "Galerie",
+    "subtitle": "Ein Vorgeschmack auf meine Klänge und Kreationen",
+    "originals": "Original-",
+    "originalsGold": "Kreationen",
+    "coversGold": "Covers",
+    "coversRest": ""
+  },
+  "music": {
+    "label": "Musik",
+    "title": "Musik",
+    "subtitle": "Hören Sie meine Klänge auf allen Plattformen",
+    "appleMusicTitle": "Apple Music",
+    "spotifyTitle": "Spotify",
+    "youtubeTitle": "Auf YouTube ansehen",
+    "watchOnYoutube": "YouTube-Kanal"
+  },
+  "recommendations": {
+    "label": "Empfehlungen",
+    "title": "Was andere ",
+    "titleGold": "sagen",
+    "subtitle": "Einige der freundlichen Worte, die ich von Schülern und Teilnehmern erhalten habe",
+    "items": [
+      { "name": "Dolev George", "text": "Bruder, danke für eine Stunde, die alle Erwartungen übertroffen hat! Die persönliche Aufmerksamkeit, Professionalität, volle Hingabe und die Abstimmung zwischen Übungen und Spielniveau machten es von einer Stunde zu einem echten Erlebnis." },
+      { "name": "Tal Shrizli", "text": "Eine Stunde mit dir ist wirklich ein Fest für Herz, Ohr und Seele. Die Art, wie du Musik unterrichtest, ist einfach lustig, aufmerksam und professionell. Du machst wirklich Lust, mehr zu lernen." },
+      { "name": "Talia Toker", "text": "Schöne Seele! Die letzte Session hat mich richtig geöffnet! Ich saß stundenlang am Stück und bin mit mir selbst geflogen. Ich werde immer freier und das ist ein großes Glück und ein riesiges Dankeschön." },
+      { "name": "Weiterer Schüler", "text": "Das Erlebnis ist magisch und die Atmosphäre, die Daniel schafft, ist einfach süchtig machend. Daniel ist ein unglaublich begabter Lehrer, der genau weiß, wie man jeden an die Welt des Handpan heranführt." }
+    ]
+  },
+  "contact": {
+    "label": "Kontakt",
+    "title": "Lass uns ",
+    "titleGold": "reden.",
+    "followMe": "Folge mir",
+    "form": {
+      "name": "Vollständiger Name",
+      "phone": "Telefon (10 Ziffern)",
+      "interest": "Interessensgebiet wählen",
+      "interestOptions": ["Live-Events & Auftritte", "Paar-Workshop", "Familien-Workshop", "Team-Workshop", "Privatunterricht", "Sonstiges"],
+      "message": "Ihre Nachricht...",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet...",
+      "sent": "Erfolgreich gesendet!",
+      "error": "Fehler, versuchen Sie es erneut",
+      "phoneError": "Telefonnummer muss 10 Ziffern enthalten"
+    }
+  },
+  "modal": {
+    "title": "Details ",
+    "titleGold": "& Anmeldung",
+    "subtitle": "Füllen Sie Ihre Daten aus und wir melden uns in Kürze"
+  },
+  "footer": {
+    "rights": "ALLE RECHTE VORBEHALTEN."
+  }
+}

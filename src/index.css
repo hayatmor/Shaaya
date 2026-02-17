@@ -11,6 +11,17 @@
 html {
   /* Fix iOS 100vh issue */
   height: -webkit-fill-available;
+  scroll-behavior: smooth;
+}
+
+/* Anchor scroll offset for fixed nav */
+.section-anchor {
+  scroll-margin-top: 64px;
+}
+
+/* LTR adjustments */
+[dir="ltr"] .font-serif {
+  font-family: 'Playfair Display', serif;
 }
 
 body {

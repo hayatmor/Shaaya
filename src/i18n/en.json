@@ -1,0 +1,144 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Workshops & Shows",
+    "gallery": "Videos",
+    "music": "Music",
+    "recommendations": "Testimonials",
+    "contact": "Contact"
+  },
+  "home": {
+    "subtitle": "Handpan Artist & Musician",
+    "tagline1": "A musical journey of listening, rhythm & ",
+    "tagline1gold": "connection",
+    "tagline2": "The melody will accompany us ",
+    "tagline2gold": "always",
+    "cta": "Get in Touch",
+    "latestRelease": "Latest Release",
+    "listenNow": "Listen Now",
+    "muteMusic": "Mute music",
+    "playMusic": "Play music"
+  },
+  "about": {
+    "label": "About",
+    "title1": "Hi, I'm ",
+    "titleGold": "Daniel",
+    "titleShaaya": "(Shaaya)",
+    "bio1": "A father, a family man, and a drummer at heart. My ",
+    "bio1gold": "love",
+    "bio1rest": " for music started at age six, when I found myself drumming non-stop, and already then I knew music would be an inseparable part of my life.",
+    "bio2pre": "I first encountered the ",
+    "bio2gold": "handpan",
+    "bio2rest": " at age 17, but only in 2019 did I buy my first instrument — and from the moment the first notes met my fingers, a deep love story began.",
+    "bio3": "Since then, I've been performing, teaching, leading workshops, and accompanying events through the unique sound of the handpan — an instrument that combines delicacy, depth, meditativeness, and rare accessibility. I believe we all deserve a space for listening, calm, ",
+    "bio3gold": "creation",
+    "bio3rest": " and connection.",
+    "list1": "Intimate performances and events",
+    "list2": "Handpan workshops (couples, families, organizations)",
+    "list3": "Private lessons and musical accompaniment"
+  },
+  "services": {
+    "label": "Experiences",
+    "title": "Workshops",
+    "titleRest": " & Shows",
+    "subtitle": "A variety of options to meet the world of the ",
+    "subtitleGold": "handpan",
+    "new": "New",
+    "items": [
+      {
+        "title": "Live Events & Performances",
+        "subtitle": "Sounds that stop time. An atmosphere that touches the soul.",
+        "description": "Live music that elevates every event and makes it unforgettable. The handpan sounds create a unique frequency of calm, celebration, and magic.",
+        "details": ["Customized to the event's character", "Creates a luxurious and moving atmosphere", "Quality professional sound system"],
+        "cta": "Details & Book a Date"
+      },
+      {
+        "title": "Couples Handpan Workshop",
+        "subtitle": "Connection through sound. Love through music.",
+        "description": "An intimate and moving workshop where you'll discover music's ability to open the heart.",
+        "details": ["Duration: 1.5 hours", "One couple only", "Price: 600 ₪ (in studio)"],
+        "cta": "Details & Registration"
+      },
+      {
+        "title": "Family Workshop",
+        "subtitle": "A moment of connection. A sound of love.",
+        "description": "An opportunity to stop the race and breathe together. We'll create a safe space where everyone can express themselves.",
+        "details": ["Duration: 1.5 - 3 hours", "Minimum 3 participants", "Price: 200-350 ₪ per person"],
+        "cta": "Details & Registration"
+      },
+      {
+        "title": "Team Workshop",
+        "subtitle": "Inspiration, listening, and shared growth",
+        "description": "A musical experience that connects people. Together we create shared harmony.",
+        "details": ["Duration: 1.5 hours", "Minimum 5 participants", "Suitable for organizations"],
+        "cta": "Details & Registration"
+      },
+      {
+        "title": "Private Lessons",
+        "subtitle": "Personal guidance on the musical journey",
+        "description": "A journey of self-discovery through sound. Lessons are personally tailored.",
+        "details": ["Suitable for all levels", "Technique & listening development", "Creation & improvisation"],
+        "cta": "Details & Registration"
+      }
+    ],
+    "interestValues": ["Live Events & Performances", "Couples Workshop", "Family Workshop", "Team Workshop", "Private Lessons"]
+  },
+  "gallery": {
+    "label": "Gallery",
+    "title": "Video ",
+    "titleGold": "Gallery",
+    "subtitle": "A taste of my sounds and creations",
+    "originals": "Original ",
+    "originalsGold": "Creations",
+    "coversGold": "Covers",
+    "coversRest": ""
+  },
+  "music": {
+    "label": "Music",
+    "title": "Music",
+    "subtitle": "Listen to my sounds on all platforms",
+    "appleMusicTitle": "Apple Music",
+    "spotifyTitle": "Spotify",
+    "youtubeTitle": "Watch on YouTube",
+    "watchOnYoutube": "YouTube Channel"
+  },
+  "recommendations": {
+    "label": "Testimonials",
+    "title": "What people ",
+    "titleGold": "say",
+    "subtitle": "Some of the kind words I've received from students and participants",
+    "items": [
+      { "name": "Dolev George", "text": "Bro, thank you for a lesson beyond expectations! The personal attention, professionalism, full care and the match between exercises and playing level turned it from a lesson into a real experience." },
+      { "name": "Tal Shrizli", "text": "A lesson with you is truly a celebration for the heart, ear, and soul. The way you teach music is simply fun, attentive, and professional. You really make people want to learn more." },
+      { "name": "Talia Toker", "text": "Beautiful soul! The last session really opened me up! I sat for hours in a row and flew with myself. Getting more and more free and it's a great joy and huge thanks." },
+      { "name": "Another Student", "text": "The experience is magical and the atmosphere Daniel creates is simply addictive. Daniel is an incredibly gifted teacher who knows exactly how to approach and open the world of handpan to everyone." }
+    ]
+  },
+  "contact": {
+    "label": "Contact",
+    "title": "Let's ",
+    "titleGold": "Talk.",
+    "followMe": "Follow Me",
+    "form": {
+      "name": "Full Name",
+      "phone": "Phone (10 digits)",
+      "interest": "Select interest type",
+      "interestOptions": ["Live Events & Performances", "Couples Workshop", "Family Workshop", "Team Workshop", "Private Lessons", "Other"],
+      "message": "Your message...",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "sent": "Sent successfully!",
+      "error": "Error, try again",
+      "phoneError": "Phone number must contain 10 digits"
+    }
+  },
+  "modal": {
+    "title": "Details ",
+    "titleGold": "& Registration",
+    "subtitle": "Fill in your details and we'll get back to you soon"
+  },
+  "footer": {
+    "rights": "ALL RIGHTS RESERVED."
+  }
+}
