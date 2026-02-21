@@ -196,17 +196,78 @@ const ContactModal = ({ isOpen, onClose, preselectedInterest = '' }) => {
 
 // --- Pages ---
 
+const VideoCard = ({ videoId, title, label, labelStyle, distroLink, listenText }) => {
+  const [expanded, setExpanded] = useState(false);
+  const thumb = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+
+  useEffect(() => {
+    if (expanded) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [expanded]);
+
+  return (
+    <>
+      <div className="flex flex-col items-center gap-3 p-3 sm:p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+        <span className="text-[10px] sm:text-xs tracking-[0.2em] uppercase" style={labelStyle}>{label}</span>
+        <p className="text-base sm:text-lg font-serif italic text-white">{title}</p>
+        <button onClick={() => setExpanded(true)} className="w-full aspect-video rounded-lg overflow-hidden relative group cursor-pointer">
+          <img src={thumb} alt={title} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform">
+              <Play size={22} className="fill-white text-white ml-0.5" />
+            </div>
+          </div>
+        </button>
+        <a href={distroLink} target="_blank" rel="noopener noreferrer"
+          className="btn-sparkle px-5 py-2 border rounded-full text-xs tracking-wider uppercase flex items-center gap-2 transition-all duration-300 hover:bg-white hover:text-black"
+          style={{ borderColor: GOLD + '60', color: GOLD }}>
+          <Play size={14} />
+          {listenText}
+        </a>
+      </div>
+
+      {expanded && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-8 animate-fade-in" onClick={() => setExpanded(false)}>
+          <div className="absolute inset-0 bg-black/90 backdrop-blur-md" />
+          <div className="relative w-full max-w-4xl animate-slide-up" onClick={e => e.stopPropagation()}>
+            <button onClick={() => setExpanded(false)}
+              className="absolute -top-10 right-0 sm:-top-12 sm:-right-2 text-zinc-400 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center z-10">
+              <X size={28} />
+            </button>
+            <div className="w-full aspect-video rounded-xl overflow-hidden shadow-2xl shadow-black/80 border border-white/10">
+              <iframe
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+                title={title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+            <p className="text-center text-white font-serif italic text-lg mt-4">{title}</p>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
 const HomePage = ({ isMusicPlaying, videoRef }) => {
   const { t } = useTranslation();
   return (
-    <div id="home" className="relative h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden">
+    <div id="home" className="relative min-h-[100dvh] sm:h-[100dvh] w-full flex flex-col items-center justify-center sm:overflow-hidden">
       <div className="absolute inset-0 bg-black">
         <video ref={videoRef} autoPlay loop playsInline preload="auto" className="w-full h-full object-cover opacity-50">
           <source src="/background.mp4" type="video/mp4" />
         </video>
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[#050505]" />
-      <div className="relative z-20 text-center px-4 sm:px-6 max-w-5xl space-y-3 sm:space-y-5 animate-slide-up mt-16 sm:mt-20">
+      <div className="relative z-20 text-center px-4 sm:px-6 max-w-5xl space-y-3 sm:space-y-5 animate-slide-up mt-20 sm:mt-20 pb-8 sm:pb-0">
         <p className="tracking-[0.2em] sm:tracking-[0.3em] text-xs sm:text-sm uppercase drop-shadow-lg" style={{ color: GOLD }}>{t('home.subtitle')}</p>
         <img src="/logo-transparent.png" alt="SHAAYA" className="h-16 sm:h-24 md:h-32 lg:h-40 w-auto mx-auto drop-shadow-2xl object-contain" />
         <p className="text-sm sm:text-base md:text-lg font-light text-zinc-200 max-w-xl mx-auto leading-relaxed drop-shadow-md px-2">
@@ -222,28 +283,24 @@ const HomePage = ({ isMusicPlaying, videoRef }) => {
           </a>
         </div>
         {/* Latest Releases */}
-        <div className="pt-4 sm:pt-6">
-          <div className="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-            <div className="flex flex-col items-center gap-2 p-4 sm:p-5 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
-              <span className="text-[10px] sm:text-xs tracking-[0.2em] uppercase" style={{ color: GOLD }}>{t('home.latestRelease')}</span>
-              <p className="text-base sm:text-lg font-serif italic text-white">Afterglow</p>
-              <a href="https://distrokid.com/hyperfollow/shaaya/afterglow" target="_blank" rel="noopener noreferrer"
-                className="btn-sparkle mt-1 px-5 py-2 border rounded-full text-xs tracking-wider uppercase flex items-center gap-2 transition-all duration-300 hover:bg-white hover:text-black"
-                style={{ borderColor: GOLD + '60', color: GOLD }}>
-                <Play size={14} />
-                {t('home.listenNow')}
-              </a>
-            </div>
-            <div className="flex flex-col items-center gap-2 p-4 sm:p-5 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
-              <span className="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-zinc-500">&nbsp;</span>
-              <p className="text-base sm:text-lg font-serif italic text-white">When the Steel is Cold</p>
-              <a href="https://distrokid.com/hyperfollow/shaaya/when-the-steel-is-cold" target="_blank" rel="noopener noreferrer"
-                className="btn-sparkle mt-1 px-5 py-2 border rounded-full text-xs tracking-wider uppercase flex items-center gap-2 transition-all duration-300 hover:bg-white hover:text-black"
-                style={{ borderColor: GOLD + '60', color: GOLD }}>
-                <Play size={14} />
-                {t('home.listenNow')}
-              </a>
-            </div>
+        <div className="pt-4 sm:pt-6 w-full max-w-xs sm:max-w-2xl mx-auto px-2">
+          <div className="flex flex-col sm:grid sm:grid-cols-2 gap-3 sm:gap-4">
+            <VideoCard
+              videoId="Uas_RFaPxzM"
+              title="Afterglow"
+              label={t('home.latestRelease')}
+              labelStyle={{ color: GOLD }}
+              distroLink="https://distrokid.com/hyperfollow/shaaya/afterglow"
+              listenText={t('home.listenNow')}
+            />
+            <VideoCard
+              videoId="5iR5e0fqGlM"
+              title="When the Steel is Cold"
+              label={'\u00A0'}
+              labelStyle={{ color: 'transparent' }}
+              distroLink="https://distrokid.com/hyperfollow/shaaya/when-the-steel-is-cold"
+              listenText={t('home.listenNow')}
+            />
           </div>
         </div>
       </div>
