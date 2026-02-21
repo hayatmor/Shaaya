@@ -74,12 +74,12 @@ const SocialLinks = ({ size = 18, className = '' }) => (
       style={{ color: '#4267B2' }} aria-label="Facebook">
       <Facebook size={size} />
     </a>
-    <a href="https://www.youtube.com/channel/UCKiAPaAouYL5zeKKhZ-Pomg" target="_blank" rel="noopener noreferrer"
+    <a href="https://www.youtube.com/channel/UC80_83SPXBji6OsByzC5NRA" target="_blank" rel="noopener noreferrer"
       className="transition-colors duration-300 min-w-[36px] min-h-[36px] flex items-center justify-center hover:opacity-80"
       style={{ color: '#FF0000' }} aria-label="YouTube">
       <Youtube size={size} />
     </a>
-    <a href="https://www.tiktok.com/@daniel_shaya?_r=1&_t=ZS-93pUPzRMaG5" target="_blank" rel="noopener noreferrer"
+    <a href="https://www.tiktok.com/@shaaya_d" target="_blank" rel="noopener noreferrer"
       className="transition-colors duration-300 min-w-[36px] min-h-[36px] flex items-center justify-center hover:opacity-80"
       style={{ color: '#69C9D0' }} aria-label="TikTok">
       <TikTokIcon size={size} />
@@ -89,7 +89,7 @@ const SocialLinks = ({ size = 18, className = '' }) => (
       style={{ color: '#1DB954' }} aria-label="Spotify">
       <SpotifyIcon size={size} />
     </a>
-    <a href="https://music.apple.com/il/artist/shaaya/1877189108" target="_blank" rel="noopener noreferrer"
+    <a href="https://music.apple.com/il/artist/shaaya/1876665852" target="_blank" rel="noopener noreferrer"
       className="transition-colors duration-300 min-w-[36px] min-h-[36px] flex items-center justify-center hover:opacity-80"
       style={{ color: '#FC3C44' }} aria-label="Apple Music">
       <AppleMusicIcon size={size} />
@@ -221,17 +221,29 @@ const HomePage = ({ isMusicPlaying, videoRef }) => {
             {t('home.cta')}
           </a>
         </div>
-        {/* Latest Release */}
+        {/* Latest Releases */}
         <div className="pt-4 sm:pt-6">
-          <div className="inline-flex flex-col items-center gap-2 p-4 sm:p-5 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
-            <span className="text-[10px] sm:text-xs tracking-[0.2em] uppercase" style={{ color: GOLD }}>{t('home.latestRelease')}</span>
-            <p className="text-base sm:text-lg font-serif italic text-white">When the Steel is Cold</p>
-            <a href="https://distrokid.com/hyperfollow/shaaya/when-the-steel-is-cold" target="_blank" rel="noopener noreferrer"
-              className="btn-sparkle mt-1 px-5 py-2 border rounded-full text-xs tracking-wider uppercase flex items-center gap-2 transition-all duration-300 hover:bg-white hover:text-black"
-              style={{ borderColor: GOLD + '60', color: GOLD }}>
-              <Play size={14} />
-              {t('home.listenNow')}
-            </a>
+          <div className="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+            <div className="flex flex-col items-center gap-2 p-4 sm:p-5 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+              <span className="text-[10px] sm:text-xs tracking-[0.2em] uppercase" style={{ color: GOLD }}>{t('home.latestRelease')}</span>
+              <p className="text-base sm:text-lg font-serif italic text-white">Afterglow</p>
+              <a href="https://distrokid.com/hyperfollow/shaaya/afterglow" target="_blank" rel="noopener noreferrer"
+                className="btn-sparkle mt-1 px-5 py-2 border rounded-full text-xs tracking-wider uppercase flex items-center gap-2 transition-all duration-300 hover:bg-white hover:text-black"
+                style={{ borderColor: GOLD + '60', color: GOLD }}>
+                <Play size={14} />
+                {t('home.listenNow')}
+              </a>
+            </div>
+            <div className="flex flex-col items-center gap-2 p-4 sm:p-5 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+              <span className="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-zinc-500">&nbsp;</span>
+              <p className="text-base sm:text-lg font-serif italic text-white">When the Steel is Cold</p>
+              <a href="https://distrokid.com/hyperfollow/shaaya/when-the-steel-is-cold" target="_blank" rel="noopener noreferrer"
+                className="btn-sparkle mt-1 px-5 py-2 border rounded-full text-xs tracking-wider uppercase flex items-center gap-2 transition-all duration-300 hover:bg-white hover:text-black"
+                style={{ borderColor: GOLD + '60', color: GOLD }}>
+                <Play size={14} />
+                {t('home.listenNow')}
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -418,47 +430,97 @@ const MusicPage = () => {
         </div>
 
         <div className="space-y-10 sm:space-y-14">
-          {/* Apple Music */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-pink-500 to-red-500 flex items-center justify-center">
-                <Music size={16} className="text-white" />
-              </div>
-              <h3 className="text-lg font-light text-white">{t('music.appleMusicTitle')}</h3>
-            </div>
-            <div className="rounded-xl overflow-hidden bg-zinc-900/50 border border-white/5">
-              <iframe
-                allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-                frameBorder="0"
-                height="175"
-                style={{ width: '100%', maxWidth: '660px', overflow: 'hidden', borderRadius: '10px', margin: '0 auto', display: 'block' }}
-                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-                src="https://embed.music.apple.com/il/song/when-the-steel-is-cold/1877189109"
-                title="Apple Music - When the Steel is Cold"
-              />
-            </div>
-          </div>
 
-          {/* Spotify */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#1DB954' }}>
-                <SpotifyIcon size={16} className="text-white" />
+          {/* Afterglow - Latest Release */}
+          <div className="space-y-6 p-5 sm:p-6 rounded-xl border border-white/10 bg-white/[0.02]">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: GOLD + '20' }}>
+                  <Sparkles size={16} style={{ color: GOLD }} />
+                </div>
+                <div>
+                  <h3 className="text-lg font-light text-white">Afterglow</h3>
+                  <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: GOLD }}>New Release</span>
+                </div>
               </div>
-              <h3 className="text-lg font-light text-white">{t('music.spotifyTitle')}</h3>
+              <a href="https://distrokid.com/hyperfollow/shaaya/afterglow" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 border rounded-full text-xs tracking-wider uppercase transition-all duration-300 hover:bg-white hover:text-black"
+                style={{ borderColor: GOLD + '40', color: GOLD }}>
+                <Play size={12} />
+                {t('home.listenNow')}
+                <ExternalLink size={12} />
+              </a>
             </div>
             <div className="rounded-xl overflow-hidden">
               <iframe
                 style={{ borderRadius: '12px' }}
-                src="https://open.spotify.com/embed/track/6ILXxlykjl3FWNhB5l52uD"
+                src="https://open.spotify.com/embed/album/3Y3Fqmf0lVdEaPZHtbyBGb"
                 width="100%"
                 height="352"
                 frameBorder="0"
                 allowFullScreen
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy"
-                title="Spotify - When the Steel is Cold"
+                title="Spotify - Afterglow"
               />
+            </div>
+          </div>
+
+          {/* When the Steel is Cold */}
+          <div className="space-y-6 p-5 sm:p-6 rounded-xl border border-white/5 bg-white/[0.01]">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/5">
+                  <Music size={16} className="text-zinc-400" />
+                </div>
+                <h3 className="text-lg font-light text-white">When the Steel is Cold</h3>
+              </div>
+              <a href="https://distrokid.com/hyperfollow/shaaya/when-the-steel-is-cold" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 border rounded-full text-xs tracking-wider uppercase transition-all duration-300 hover:bg-white hover:text-black border-white/20 text-zinc-400">
+                <Play size={12} />
+                {t('home.listenNow')}
+                <ExternalLink size={12} />
+              </a>
+            </div>
+
+            {/* Apple Music */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <AppleMusicIcon size={16} className="text-[#FC3C44]" />
+                <span className="text-sm text-zinc-400">{t('music.appleMusicTitle')}</span>
+              </div>
+              <div className="rounded-xl overflow-hidden bg-zinc-900/50 border border-white/5">
+                <iframe
+                  allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+                  frameBorder="0"
+                  height="175"
+                  style={{ width: '100%', maxWidth: '660px', overflow: 'hidden', borderRadius: '10px', margin: '0 auto', display: 'block' }}
+                  sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                  src="https://embed.music.apple.com/il/song/when-the-steel-is-cold/1877189109"
+                  title="Apple Music - When the Steel is Cold"
+                />
+              </div>
+            </div>
+
+            {/* Spotify */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <SpotifyIcon size={16} className="text-[#1DB954]" />
+                <span className="text-sm text-zinc-400">{t('music.spotifyTitle')}</span>
+              </div>
+              <div className="rounded-xl overflow-hidden">
+                <iframe
+                  style={{ borderRadius: '12px' }}
+                  src="https://open.spotify.com/embed/track/6ILXxlykjl3FWNhB5l52uD"
+                  width="100%"
+                  height="352"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  title="Spotify - When the Steel is Cold"
+                />
+              </div>
             </div>
           </div>
 
@@ -640,7 +702,7 @@ const App = () => {
   const [scrolled, setScrolled] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [contactModalInterest, setContactModalInterest] = useState('');
-  const [isMusicPlaying, setIsMusicPlaying] = useState(true);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const videoRef = useRef(null);
 
@@ -655,23 +717,11 @@ const App = () => {
     if (!video) return;
     const onPlaying = () => setIsVideoReady(true);
     video.addEventListener('playing', onPlaying);
-    video.muted = false;
+    video.muted = true;
+    setIsMusicPlaying(false);
     video.play().then(() => {
-      setIsMusicPlaying(true);
       setIsVideoReady(true);
-    }).catch(() => {
-      video.muted = true;
-      setIsMusicPlaying(false);
-      video.play().catch(() => {});
-      const enableAudio = () => {
-        video.muted = false;
-        if (video.paused) video.play().catch(() => {});
-        setIsMusicPlaying(true);
-        setIsVideoReady(true);
-      };
-      document.addEventListener('touchstart', enableAudio, { once: true, passive: true });
-      document.addEventListener('click', enableAudio, { once: true });
-    });
+    }).catch(() => {});
     return () => { video.removeEventListener('playing', onPlaying); };
   }, []);
 
@@ -697,11 +747,11 @@ const App = () => {
 
   // Mute when navigating away from home on desktop
   useEffect(() => {
-    if (!isMobile && activePage !== 'home' && isMusicPlaying) {
+    if (!isMobile && activePage !== 'home') {
       const v = videoRef.current;
       if (v) { v.muted = true; setIsMusicPlaying(false); }
     }
-  }, [activePage, isMusicPlaying, isMobile]);
+  }, [activePage, isMobile]);
 
   const navigateTo = useCallback((page) => {
     setIsMenuOpen(false);
