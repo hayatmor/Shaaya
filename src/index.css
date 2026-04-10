@@ -97,6 +97,17 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+/* Home hero: at least one viewport tall; may grow when zoomed (no clipping) */
+.home-min-viewport {
+  min-height: 100dvh;
+}
+
+@supports (height: 100svh) {
+  .home-min-viewport {
+    min-height: 100svh;
+  }
+}
+
 @keyframes musicPulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3); }
   50% { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }

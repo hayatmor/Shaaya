@@ -200,7 +200,7 @@ const ContactModal = ({ isOpen, onClose, preselectedInterest = '' }) => {
 
 // --- Pages ---
 
-const VideoCard = ({ videoId, title, label, labelStyle, distroLink, listenText }) => {
+const VideoCard = ({ videoId, title, label, labelStyle, distroLink, listenText, compact = false }) => {
   const [expanded, setExpanded] = useState(false);
   const thumb = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
@@ -213,23 +213,27 @@ const VideoCard = ({ videoId, title, label, labelStyle, distroLink, listenText }
     return () => { document.body.style.overflow = ''; };
   }, [expanded]);
 
+  const thumbWrapClass = compact
+    ? 'w-full h-[clamp(52px,14svh,130px)] sm:h-[clamp(72px,18svh,150px)] md:h-[clamp(88px,20svh,170px)] rounded-lg overflow-hidden relative group cursor-pointer'
+    : 'w-full aspect-video rounded-lg overflow-hidden relative group cursor-pointer';
+
   return (
     <>
-      <div className="flex flex-col items-center gap-3 p-3 sm:p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
-        <span className="text-[10px] sm:text-xs tracking-[0.2em] uppercase" style={labelStyle}>{label}</span>
-        <p className="text-base sm:text-lg font-serif italic text-white">{title}</p>
-        <button onClick={() => setExpanded(true)} className="w-full aspect-video rounded-lg overflow-hidden relative group cursor-pointer">
-          <img src={thumb} alt={title} className="w-full h-full object-cover" />
+      <div className={`flex flex-col items-center rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 ${compact ? 'gap-1.5 p-2 sm:p-2.5' : 'gap-3 p-3 sm:p-4'}`}>
+        <span className={`tracking-[0.2em] uppercase leading-none ${compact ? 'text-[9px] sm:text-[10px]' : 'text-[10px] sm:text-xs'}`} style={labelStyle}>{label}</span>
+        <p className={`font-serif italic text-white leading-tight ${compact ? 'text-xs sm:text-sm' : 'text-base sm:text-lg'}`}>{title}</p>
+        <button type="button" onClick={() => setExpanded(true)} className={thumbWrapClass}>
+          <img src={thumb} alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform">
-              <Play size={22} className="fill-white text-white ml-0.5" />
+            <div className={`rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform ${compact ? 'w-9 h-9 sm:w-10 sm:h-10' : 'w-12 h-12 sm:w-14 sm:h-14'}`}>
+              <Play size={compact ? 18 : 22} className="fill-white text-white ml-0.5" />
             </div>
           </div>
         </button>
         <a href={distroLink} target="_blank" rel="noopener noreferrer"
-          className="btn-sparkle px-5 py-2 border rounded-full text-xs tracking-wider uppercase flex items-center gap-2 transition-all duration-300 hover:bg-white hover:text-black"
+          className={`btn-sparkle border rounded-full tracking-wider uppercase flex items-center gap-1.5 transition-all duration-300 hover:bg-white hover:text-black shrink-0 ${compact ? 'px-3 py-1.5 text-[10px] sm:text-[11px]' : 'px-5 py-2 text-xs'}`}
           style={{ borderColor: GOLD + '60', color: GOLD }}>
-          <Play size={14} />
+          <Play size={compact ? 12 : 14} />
           {listenText}
         </a>
       </div>
@@ -264,31 +268,43 @@ const VideoCard = ({ videoId, title, label, labelStyle, distroLink, listenText }
 const HomePage = ({ isMusicPlaying, videoRef }) => {
   const { t } = useTranslation();
   return (
-    <div id="home" className="relative min-h-[100dvh] sm:h-[100dvh] w-full flex flex-col items-center justify-center sm:overflow-hidden">
+    <div id="home" className="home-min-viewport relative w-full flex flex-col">
       <div className="absolute inset-0 bg-black">
         <video ref={videoRef} autoPlay loop playsInline muted preload="auto" className="w-full h-full object-cover opacity-50">
           <source src="/background.mp4" type="video/mp4" />
         </video>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[#050505]" />
-      <div className="relative z-20 text-center px-4 sm:px-6 max-w-5xl space-y-3 sm:space-y-5 animate-slide-up mt-20 sm:mt-20 pb-8 sm:pb-0">
-        <p className="tracking-[0.2em] sm:tracking-[0.3em] text-xs sm:text-sm uppercase drop-shadow-lg" style={{ color: GOLD }}>{t('home.subtitle')}</p>
-        <img src="/logo-transparent.png" alt="SHAAYA" className="h-16 sm:h-24 md:h-32 lg:h-40 w-auto mx-auto drop-shadow-2xl object-contain" />
-        <p className="text-sm sm:text-base md:text-lg font-light text-zinc-200 max-w-xl mx-auto leading-relaxed drop-shadow-md px-2">
-          {t('home.tagline1')}<GoldText>{t('home.tagline1gold')}</GoldText>.
-          <br />
-          {t('home.tagline2')}<GoldText>{t('home.tagline2gold')}</GoldText>.
-        </p>
-        <div className="pt-3 sm:pt-5 flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="https://wa.me/972526464647" target="_blank" rel="noopener noreferrer"
-            className="btn-sparkle px-6 sm:px-8 py-3 border border-white/30 backdrop-blur-sm hover:bg-white hover:text-black active:bg-white active:text-black transition-all duration-300 rounded-full tracking-widest text-xs sm:text-sm uppercase flex items-center gap-3 min-h-[48px]">
-            <WhatsAppIcon size={18} className="text-green-500" />
-            {t('home.cta')}
-          </a>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[#050505]/90 pointer-events-none" />
+      <div
+        className="relative z-20 flex flex-col flex-1 w-full max-w-5xl mx-auto px-3 sm:px-5 text-center
+          pt-[calc(env(safe-area-inset-top,0px)+3.75rem)] sm:pt-[calc(env(safe-area-inset-top,0px)+4.25rem)]
+          pb-[max(1.25rem,calc(env(safe-area-inset-bottom,0px)+5rem))]"
+      >
+        {/* Top block: subtitle, logo, tagline, CTA — compact vertical rhythm */}
+        <div className="shrink-0 flex flex-col items-center gap-1 sm:gap-1.5 md:gap-2 animate-slide-up">
+          <p className="tracking-[0.18em] sm:tracking-[0.25em] text-[10px] sm:text-xs uppercase drop-shadow-lg leading-tight" style={{ color: GOLD }}>{t('home.subtitle')}</p>
+          <img
+            src="/logo-transparent.png"
+            alt="SHAAYA"
+            className="w-auto max-w-[min(88vw,520px)] h-[clamp(3rem,11svh,5.5rem)] sm:h-[clamp(3.25rem,12svh,6.5rem)] md:h-[clamp(3.5rem,13svh,7.5rem)] object-contain drop-shadow-2xl"
+          />
+          <p className="text-[clamp(0.7rem,2.8vw,0.95rem)] sm:text-sm md:text-base font-light text-zinc-200 max-w-xl mx-auto leading-snug drop-shadow-md px-1">
+            {t('home.tagline1')}<GoldText>{t('home.tagline1gold')}</GoldText>.
+            <br />
+            {t('home.tagline2')}<GoldText>{t('home.tagline2gold')}</GoldText>.
+          </p>
+          <div className="flex justify-center items-center pt-0.5 sm:pt-1">
+            <a href="https://wa.me/972526464647" target="_blank" rel="noopener noreferrer"
+              className="btn-sparkle px-4 sm:px-6 py-2 sm:py-2.5 border border-white/30 backdrop-blur-sm hover:bg-white hover:text-black active:bg-white active:text-black transition-all duration-300 rounded-full tracking-widest text-[10px] sm:text-xs uppercase flex items-center gap-2 min-h-[40px] sm:min-h-[44px]">
+              <WhatsAppIcon size={16} className="text-green-500 sm:w-[18px] sm:h-[18px]" />
+              {t('home.cta')}
+            </a>
+          </div>
         </div>
-        {/* Latest Releases */}
-        <div className="pt-4 sm:pt-6 w-full max-w-xs sm:max-w-2xl mx-auto px-2">
-          <div className="flex flex-col sm:grid sm:grid-cols-2 gap-3 sm:gap-4">
+
+        {/* Middle: releases */}
+        <div className="flex-1 flex flex-col justify-center py-2 sm:py-3 w-full max-w-[min(100%,42rem)] mx-auto">
+          <div className="grid grid-cols-2 gap-1.5 sm:gap-3 w-full items-stretch">
             <VideoCard
               videoId="Uas_RFaPxzM"
               title="Afterglow"
@@ -296,6 +312,7 @@ const HomePage = ({ isMusicPlaying, videoRef }) => {
               labelStyle={{ color: GOLD }}
               distroLink="https://distrokid.com/hyperfollow/shaaya/afterglow"
               listenText={t('home.listenNow')}
+              compact
             />
             <VideoCard
               videoId="5iR5e0fqGlM"
@@ -304,39 +321,41 @@ const HomePage = ({ isMusicPlaying, videoRef }) => {
               labelStyle={{ color: 'transparent' }}
               distroLink="https://distrokid.com/hyperfollow/shaaya/when-the-steel-is-cold"
               listenText={t('home.listenNow')}
+              compact
             />
           </div>
         </div>
-        {/* Partners */}
-        <div className="pt-6 sm:pt-8 w-full max-w-2xl mx-auto border-t border-white/10 mt-6 sm:mt-8">
-          <p className="text-sm sm:text-base font-light tracking-[0.12em] sm:tracking-[0.18em] uppercase mb-4 sm:mb-5">
+
+        {/* Partners — pinned to bottom of viewport stack */}
+        <div className="shrink-0 w-full max-w-2xl mx-auto border-t border-white/10 pt-2 sm:pt-2.5 mt-1">
+          <p className="text-[10px] sm:text-xs font-light tracking-[0.12em] sm:tracking-[0.16em] uppercase mb-2 sm:mb-2.5 leading-tight">
             <GoldText>{t('home.partnersHeading')}</GoldText>
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-10 sm:gap-14">
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-10">
             <a
               href={YISHAMA_PARTNER_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center min-h-[44px] w-[min(100%,280px)] sm:w-[300px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
+              className="group flex items-center justify-center min-h-[40px] w-[min(48%,140px)] sm:w-[min(46%,200px)] md:w-[240px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
               aria-label={t('home.partnerAltYishama')}
             >
               <img
                 src="/partners/yishama.png"
                 alt={t('home.partnerAltYishama')}
-                className="h-11 sm:h-12 w-full max-h-12 object-contain object-center opacity-95 transition-all duration-300 ease-out drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] group-hover:opacity-100 group-hover:brightness-110 group-hover:saturate-125 group-hover:drop-shadow-[0_0_22px_rgba(201,165,90,0.55)]"
+                className="h-8 sm:h-9 md:h-10 w-full max-h-10 object-contain object-center opacity-95 transition-all duration-300 ease-out drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] group-hover:opacity-100 group-hover:brightness-110 group-hover:saturate-125 group-hover:drop-shadow-[0_0_22px_rgba(201,165,90,0.55)]"
               />
             </a>
             <a
               href={KALIMBA_PARTNER_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center min-h-[44px] w-[min(100%,280px)] sm:w-[300px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
+              className="group flex items-center justify-center min-h-[40px] w-[min(48%,140px)] sm:w-[min(46%,200px)] md:w-[240px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
               aria-label={t('home.partnerAltKalimba')}
             >
               <img
                 src="/partners/kalimba-dark.png"
                 alt={t('home.partnerAltKalimba')}
-                className="h-11 sm:h-12 w-full max-h-12 object-contain object-center opacity-95 transition-all duration-300 ease-out drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] group-hover:opacity-100 group-hover:brightness-110 group-hover:saturate-125 group-hover:drop-shadow-[0_0_22px_rgba(201,165,90,0.55)]"
+                className="h-8 sm:h-9 md:h-10 w-full max-h-10 object-contain object-center opacity-95 transition-all duration-300 ease-out drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] group-hover:opacity-100 group-hover:brightness-110 group-hover:saturate-125 group-hover:drop-shadow-[0_0_22px_rgba(201,165,90,0.55)]"
               />
             </a>
           </div>
@@ -828,17 +847,15 @@ const App = () => {
     else { v.muted = false; setIsMusicPlaying(true); }
   };
 
-  // Scroll lock: on desktop, lock only on home; on mobile, don't lock (single-page scroll)
+  // Lock scroll only when mobile menu is open (allow page scroll at high zoom on home)
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else if (!isMobile && activePage === 'home') {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
     return () => { document.body.style.overflow = ''; };
-  }, [activePage, isMenuOpen, isMobile]);
+  }, [isMenuOpen]);
 
   // Mute when navigating away from home on desktop
   useEffect(() => {
@@ -948,8 +965,8 @@ const App = () => {
 
       {/* Floating Music Button */}
       {showMusicButton && (
-        <button onClick={toggleMusic}
-          className={`fixed bottom-5 left-5 sm:bottom-8 sm:left-8 z-50 backdrop-blur-md border text-white p-3.5 sm:p-4 rounded-full transition-all duration-500 group min-w-[48px] min-h-[48px] flex items-center justify-center animate-fade-in ${isMusicPlaying ? 'bg-white/10 border-white/20' : 'bg-white/15 border-white/30 animate-music-pulse hover:bg-white hover:text-black'}`}
+        <button type="button" onClick={toggleMusic}
+          className={`fixed bottom-[max(1rem,env(safe-area-inset-bottom,0px))] start-4 sm:start-8 z-40 backdrop-blur-md border text-white p-3 sm:p-3.5 rounded-full transition-all duration-500 group min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px] flex items-center justify-center animate-fade-in touch-manipulation ${isMusicPlaying ? 'bg-white/10 border-white/20' : 'bg-white/15 border-white/30 animate-music-pulse hover:bg-white hover:text-black'}`}
           aria-label={isMusicPlaying ? t('home.muteMusic') : t('home.playMusic')}>
           {isMusicPlaying ? <Volume2 size={22} className="group-hover:scale-110 transition-transform" /> : <VolumeX size={22} className="group-hover:scale-110 transition-transform" />}
         </button>
