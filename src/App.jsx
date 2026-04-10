@@ -26,6 +26,10 @@ import LanguageSwitcher from './components/LanguageSwitcher';
 
 const GOLD = '#C9A55A';
 
+const YISHAMA_PARTNER_URL = 'https://www.yishama.com/Shaaya';
+const KALIMBA_PARTNER_URL =
+  'https://www.kalimba.co.il/%D7%9B%D7%9C%D7%99%D7%9D/p/348/-%D7%A4%D7%90%D7%A0%D7%98%D7%9D-D-AMARA-%D7%9B%D7%95%D7%9C%D7%9C-%D7%A7%D7%99%D7%99%D7%A1-Pantam-drum';
+
 // --- Custom SVG Icons ---
 
 const TikTokIcon = ({ size = 24, className = '' }) => (
@@ -262,7 +266,7 @@ const HomePage = ({ isMusicPlaying, videoRef }) => {
   return (
     <div id="home" className="relative min-h-[100dvh] sm:h-[100dvh] w-full flex flex-col items-center justify-center sm:overflow-hidden">
       <div className="absolute inset-0 bg-black">
-        <video ref={videoRef} autoPlay loop playsInline preload="auto" className="w-full h-full object-cover opacity-50">
+        <video ref={videoRef} autoPlay loop playsInline muted preload="auto" className="w-full h-full object-cover opacity-50">
           <source src="/background.mp4" type="video/mp4" />
         </video>
       </div>
@@ -301,6 +305,40 @@ const HomePage = ({ isMusicPlaying, videoRef }) => {
               distroLink="https://distrokid.com/hyperfollow/shaaya/when-the-steel-is-cold"
               listenText={t('home.listenNow')}
             />
+          </div>
+        </div>
+        {/* Partners */}
+        <div className="pt-6 sm:pt-8 w-full max-w-2xl mx-auto border-t border-white/10 mt-6 sm:mt-8">
+          <p className="text-sm sm:text-base font-light tracking-[0.12em] sm:tracking-[0.18em] uppercase mb-4 sm:mb-5">
+            <GoldText>{t('home.partnersHeading')}</GoldText>
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-10 sm:gap-14">
+            <a
+              href={YISHAMA_PARTNER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-center min-h-[44px] w-[min(100%,280px)] sm:w-[300px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
+              aria-label={t('home.partnerAltYishama')}
+            >
+              <img
+                src="/partners/yishama.png"
+                alt={t('home.partnerAltYishama')}
+                className="h-11 sm:h-12 w-full max-h-12 object-contain object-center opacity-95 transition-all duration-300 ease-out drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] group-hover:opacity-100 group-hover:brightness-110 group-hover:saturate-125 group-hover:drop-shadow-[0_0_22px_rgba(201,165,90,0.55)]"
+              />
+            </a>
+            <a
+              href={KALIMBA_PARTNER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-center min-h-[44px] w-[min(100%,280px)] sm:w-[300px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
+              aria-label={t('home.partnerAltKalimba')}
+            >
+              <img
+                src="/partners/kalimba-dark.png"
+                alt={t('home.partnerAltKalimba')}
+                className="h-11 sm:h-12 w-full max-h-12 object-contain object-center opacity-95 transition-all duration-300 ease-out drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] group-hover:opacity-100 group-hover:brightness-110 group-hover:saturate-125 group-hover:drop-shadow-[0_0_22px_rgba(201,165,90,0.55)]"
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -852,8 +890,7 @@ const App = () => {
     }
   };
 
-  // Determine if we should show the music button
-  const showMusicButton = isMobile ? isVideoReady : (activePage === 'home' && isVideoReady);
+  const showMusicButton = isMobile || activePage === 'home';
 
   return (
     <div className="min-h-screen bg-[#050505] text-zinc-100 font-sans selection:bg-white/20 overflow-x-hidden" dir={isRtl ? 'rtl' : 'ltr'}>
@@ -912,7 +949,7 @@ const App = () => {
       {/* Floating Music Button */}
       {showMusicButton && (
         <button onClick={toggleMusic}
-          className={`fixed bottom-5 left-5 sm:bottom-8 sm:left-8 z-50 backdrop-blur-md border text-white p-3.5 sm:p-4 rounded-full transition-all duration-500 group min-w-[48px] min-h-[48px] flex items-center justify-center animate-fade-in ${isMusicPlaying ? 'bg-white/10 border-white/20' : 'bg-white/5 border-white/10 hover:bg-white hover:text-black'}`}
+          className={`fixed bottom-5 left-5 sm:bottom-8 sm:left-8 z-50 backdrop-blur-md border text-white p-3.5 sm:p-4 rounded-full transition-all duration-500 group min-w-[48px] min-h-[48px] flex items-center justify-center animate-fade-in ${isMusicPlaying ? 'bg-white/10 border-white/20' : 'bg-white/15 border-white/30 animate-music-pulse hover:bg-white hover:text-black'}`}
           aria-label={isMusicPlaying ? t('home.muteMusic') : t('home.playMusic')}>
           {isMusicPlaying ? <Volume2 size={22} className="group-hover:scale-110 transition-transform" /> : <VolumeX size={22} className="group-hover:scale-110 transition-transform" />}
         </button>

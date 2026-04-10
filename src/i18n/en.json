@@ -18,7 +18,10 @@
     "latestRelease": "Latest Release",
     "listenNow": "Listen Now",
     "muteMusic": "Mute music",
-    "playMusic": "Play music"
+    "playMusic": "Play music",
+    "partnersHeading": "Proudly supported by",
+    "partnerAltYishama": "Yishama",
+    "partnerAltKalimba": "Kalimba – ethnic instruments"
   },
   "about": {
     "label": "About",
