@@ -6,7 +6,8 @@
     "gallery": "Videos",
     "music": "Music",
     "recommendations": "Testimonials",
-    "contact": "Contact"
+    "contact": "Contact",
+    "backToTop": "Back to top"
   },
   "home": {
     "subtitle": "Handpan Artist & Musician",
@@ -17,11 +18,14 @@
     "cta": "Get in Touch",
     "latestRelease": "Latest Release",
     "listenNow": "Listen Now",
+    "albumNewLabel": "My debut album is out now",
+    "albumBuyCta": "Buy the album",
     "muteMusic": "Mute music",
     "playMusic": "Play music",
     "partnersHeading": "Proudly supported by",
     "partnerAltYishama": "Yishama",
-    "partnerAltKalimba": "Kalimba – ethnic instruments"
+    "partnerAltKalimba": "Kalimba – ethnic instruments",
+    "partnerAltSamyama": "Samyama – therapeutic sound healing instruments"
   },
   "about": {
     "label": "About",
@@ -95,15 +99,28 @@
     "originals": "Original ",
     "originalsGold": "Creations",
     "coversGold": "Covers",
-    "coversRest": ""
+    "coversRest": "",
+    "moreOnInstagram": "More videos and moments from the studio and live shows",
+    "followMe": "Follow on Instagram"
   },
   "music": {
-    "label": "Music",
-    "title": "Music",
-    "subtitle": "Listen to my sounds on all platforms",
-    "appleMusicTitle": "Apple Music",
-    "spotifyTitle": "Spotify",
-    "youtubeTitle": "Watch on YouTube",
+    "label": "Music Shop",
+    "shopTitle": "Own the ",
+    "shopTitleGold": "Music",
+    "shopSubtitle": "My albums and singles are available for digital purchase – every purchase directly supports the music",
+    "newBadge": "New",
+    "typeEp": "EP",
+    "typeSingle": "Single",
+    "trackCount": "{{num}} tracks",
+    "fullEp": "full EP",
+    "buyItunes": "Buy on iTunes",
+    "buyAmazon": "Buy on Amazon",
+    "ctaTitle": "Take the sounds ",
+    "ctaTitleGold": "home",
+    "ctaText": "When you buy my music, you make it possible for me to keep creating, recording and bringing new sounds into the world. Thank you for being part of the journey.",
+    "previewLabel": "Preview",
+    "previewHint": "Tap a track name for a 30-second preview",
+    "streamingPrompt": "Prefer streaming?",
     "watchOnYoutube": "YouTube Channel"
   },
   "recommendations": {
@@ -125,15 +142,15 @@
     "followMe": "Follow Me",
     "form": {
       "name": "Full Name",
-      "phone": "Phone (10 digits)",
+      "phone": "Phone",
       "interest": "Select interest type",
       "interestOptions": ["Live Events & Performances", "Couples Workshop", "Family Workshop", "Team Workshop", "Private Lessons", "Other"],
       "message": "Your message...",
       "send": "Send Message",
       "sending": "Sending...",
-      "sent": "Sent successfully!",
+      "sent": "WhatsApp opened – hit send there to finish",
       "error": "Error, try again",
-      "phoneError": "Phone number must contain 10 digits"
+      "phoneError": "Invalid phone number – 7 to 15 digits required"
     }
   },
   "modal": {

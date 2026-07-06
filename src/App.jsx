@@ -20,7 +20,8 @@ import {
   Sparkles,
   Volume2,
   VolumeX,
-  ExternalLink
+  ChevronUp,
+  Pause
 } from 'lucide-react';
 import LanguageSwitcher from './components/LanguageSwitcher';
 
@@ -29,6 +30,7 @@ const GOLD = '#C9A55A';
 const YISHAMA_PARTNER_URL = 'https://www.yishama.com/Shaaya';
 const KALIMBA_PARTNER_URL =
   'https://www.kalimba.co.il/%D7%9B%D7%9C%D7%99%D7%9D/p/348/-%D7%A4%D7%90%D7%A0%D7%98%D7%9D-D-AMARA-%D7%9B%D7%95%D7%9C%D7%9C-%D7%A7%D7%99%D7%99%D7%A1-Pantam-drum';
+const SAMYAMA_PARTNER_URL = 'https://samyama.life/';
 
 // --- Custom SVG Icons ---
 
@@ -53,6 +55,12 @@ const AppleMusicIcon = ({ size = 24, className = '' }) => (
 const SpotifyIcon = ({ size = 24, className = '' }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+  </svg>
+);
+
+const AmazonIcon = ({ size = 24, className = '' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595l.315-.14c.138-.06.234-.1.293-.13.226-.088.39-.046.525.13.12.174.09.336-.12.48-.256.19-.6.41-1.006.654-1.244.743-2.64 1.316-4.185 1.726a17.617 17.617 0 01-10.951-.577 17.88 17.88 0 01-5.43-3.35c-.1-.074-.151-.15-.151-.22 0-.047.021-.09.051-.13zm6.565-6.218c0-1.005.247-1.863.743-2.577.495-.71 1.17-1.25 2.04-1.615.796-.335 1.756-.575 2.912-.72.39-.046 1.033-.103 1.92-.174v-.37c0-.93-.105-1.558-.3-1.875-.302-.43-.78-.65-1.44-.65h-.182c-.48.046-.896.196-1.246.46-.35.27-.575.63-.675 1.096-.06.3-.206.465-.435.51l-2.52-.315c-.248-.06-.372-.18-.372-.39 0-.046.007-.09.022-.15.247-1.29.855-2.25 1.82-2.88.976-.616 2.1-.975 3.39-1.05h.54c1.65 0 2.957.434 3.888 1.29.135.15.27.3.405.48.12.165.224.314.283.45.075.134.15.33.195.57.06.254.105.42.135.51.03.104.062.3.076.615.01.313.02.493.02.553v5.28c0 .376.06.72.165 1.036.105.313.21.54.315.674l.51.674c.09.136.136.256.136.36 0 .12-.06.226-.18.314-1.2 1.05-1.86 1.62-1.963 1.71-.165.135-.375.15-.63.045a6.062 6.062 0 01-.526-.496l-.31-.347a9.391 9.391 0 01-.317-.42l-.3-.435c-.81.886-1.603 1.44-2.4 1.665-.494.15-1.093.227-1.83.227-1.11 0-2.04-.343-2.76-1.034-.72-.69-1.08-1.665-1.08-2.94l-.05-.076zm3.753-.438c0 .566.14 1.02.425 1.364.285.34.675.512 1.155.512.045 0 .106-.007.195-.02.09-.016.134-.023.166-.023.614-.16 1.08-.553 1.424-1.178.165-.28.285-.58.36-.91.09-.32.12-.59.135-.8.015-.195.015-.54.015-1.005v-.54c-.84 0-1.484.06-1.92.18-1.275.36-1.92 1.17-1.92 2.43l-.035-.02zm9.162 7.027c.03-.06.075-.11.132-.17.362-.243.714-.41 1.05-.5a8.094 8.094 0 011.612-.24c.14-.012.28 0 .41.03.65.06 1.05.168 1.172.33.063.09.099.228.099.39v.15c0 .51-.149 1.11-.424 1.8-.278.69-.664 1.248-1.156 1.68-.073.06-.14.09-.197.09-.03 0-.06 0-.09-.012-.09-.044-.107-.12-.064-.24.54-1.26.806-2.143.806-2.64 0-.15-.03-.27-.087-.344-.145-.166-.55-.257-1.224-.257-.243 0-.533.016-.87.046-.363.045-.7.09-1 .135-.09 0-.148-.014-.18-.044-.03-.03-.036-.047-.02-.077 0-.017.006-.03.02-.063v-.06z"/>
   </svg>
 );
 
@@ -107,17 +115,53 @@ const PageTransition = ({ children, id }) => (
   </div>
 );
 
+// --- useInView hook (lazy-mount heavy embeds when near viewport) ---
+const useInView = (rootMargin = '300px') => {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || inView) return;
+    if (!('IntersectionObserver' in window)) { setInView(true); return; }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [inView, rootMargin]);
+  return [ref, inView];
+};
+
 // --- useIsMobile hook ---
 const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 1024px)').matches);
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 1024px)');
-    setIsMobile(mq.matches);
     const handler = (e) => setIsMobile(e.matches);
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);
   }, []);
   return isMobile;
+};
+
+// --- Contact Form helpers ---
+
+// Allow international numbers: digits with an optional leading +
+const sanitizePhone = (value) => {
+  let v = value.replace(/[^\d+]/g, '');
+  v = v.startsWith('+') ? '+' + v.slice(1).replace(/\+/g, '') : v.replace(/\+/g, '');
+  return v.slice(0, 16);
+};
+
+const isValidPhone = (phone) => {
+  const digits = phone.replace(/\D/g, '');
+  return digits.length >= 7 && digits.length <= 15;
 };
 
 // --- Contact Form Modal ---
@@ -128,6 +172,7 @@ const ContactModal = ({ isOpen, onClose, preselectedInterest = '' }) => {
   const formRef = useRef(null);
   const [formData, setFormData] = useState({ name: '', phone: '', interest: preselectedInterest, message: '' });
   const [status, setStatus] = useState('idle');
+  const [phoneError, setPhoneError] = useState('');
 
   useEffect(() => {
     if (preselectedInterest) setFormData(prev => ({ ...prev, interest: preselectedInterest }));
@@ -137,17 +182,26 @@ const ContactModal = ({ isOpen, onClose, preselectedInterest = '' }) => {
     if (isOpen) {
       setFormData({ name: '', phone: '', interest: preselectedInterest, message: '' });
       setStatus('idle');
+      setPhoneError('');
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+      // Move focus into the dialog and close on Escape
+      setTimeout(() => formRef.current?.querySelector('input')?.focus(), 50);
+      const onKeyDown = (e) => { if (e.key === 'Escape') onClose(); };
+      window.addEventListener('keydown', onKeyDown);
+      return () => {
+        window.removeEventListener('keydown', onKeyDown);
+        document.body.style.overflow = '';
+      };
     }
+    document.body.style.overflow = '';
     return () => { document.body.style.overflow = ''; };
-  }, [isOpen, preselectedInterest]);
+  }, [isOpen, preselectedInterest, onClose]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'phone') {
-      setFormData(prev => ({ ...prev, [name]: value.replace(/\D/g, '').slice(0, 10) }));
+      setFormData(prev => ({ ...prev, [name]: sanitizePhone(value) }));
+      setPhoneError('');
     } else {
       setFormData(prev => ({ ...prev, [name]: value }));
     }
@@ -155,7 +209,7 @@ const ContactModal = ({ isOpen, onClose, preselectedInterest = '' }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.phone.length !== 10) { alert(t('contact.form.phoneError')); return; }
+    if (!isValidPhone(formData.phone)) { setPhoneError(t('contact.form.phoneError')); return; }
     setStatus('sending');
     const msg = `*פנייה חדשה מהאתר* 🎵\n\n*שם:* ${formData.name}\n*טלפון:* ${formData.phone}\n*סוג התעניינות:* ${formData.interest}\n\n*הודעה:*\n${formData.message}`;
     window.open(`https://wa.me/972526464647?text=${encodeURIComponent(msg)}`, '_blank');
@@ -169,16 +223,19 @@ const ContactModal = ({ isOpen, onClose, preselectedInterest = '' }) => {
   const interestOptions = t('contact.form.interestOptions', { returnObjects: true }) || [];
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4" dir={isRtl ? 'rtl' : 'ltr'}>
+    <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4" dir={isRtl ? 'rtl' : 'ltr'} role="dialog" aria-modal="true" aria-label={t('modal.title') + t('modal.titleGold')}>
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-fade-in" onClick={onClose} />
       <div className="relative bg-[#0a0a0a] border-t sm:border border-white/10 rounded-t-2xl sm:rounded-sm w-full sm:max-w-lg max-h-[85vh] sm:max-h-[90vh] overflow-y-auto animate-slide-up p-6 sm:p-8 md:p-10 safe-bottom">
         <button onClick={onClose} className="absolute top-4 left-4 text-zinc-500 hover:text-white min-w-[44px] min-h-[44px] flex items-center justify-center"><X size={20} /></button>
         <div className="w-10 h-1 bg-zinc-700 rounded-full mx-auto mb-6 sm:hidden"></div>
         <h3 className="text-xl sm:text-2xl font-light text-white mb-2">{t('modal.title')}<GoldText>{t('modal.titleGold')}</GoldText></h3>
-        <p className="text-zinc-500 text-sm mb-6 sm:mb-8">{t('modal.subtitle')}</p>
+        <p className="text-zinc-400 text-sm mb-6 sm:mb-8">{t('modal.subtitle')}</p>
         <form ref={formRef} className="space-y-5 sm:space-y-6" onSubmit={handleSubmit}>
           <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder={t('contact.form.name')} required className="w-full bg-transparent border-b border-zinc-800 focus:border-zinc-400 outline-none py-3 text-white font-light transition-colors placeholder:text-zinc-700 text-base" />
-          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder={t('contact.form.phone')} required pattern="\d{10}" minLength="10" maxLength="10" dir={isRtl ? 'rtl' : 'ltr'} className={`w-full bg-transparent border-b border-zinc-800 focus:border-zinc-400 outline-none py-3 text-white font-light transition-colors placeholder:text-zinc-700 text-base ${isRtl ? 'text-right' : 'text-left'}`} />
+          <div>
+            <input type="tel" inputMode="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder={t('contact.form.phone')} required maxLength="16" dir="ltr" aria-invalid={!!phoneError} className={`w-full bg-transparent border-b focus:border-zinc-400 outline-none py-3 text-white font-light transition-colors placeholder:text-zinc-700 text-base ${isRtl ? 'text-right' : 'text-left'} ${phoneError ? 'border-red-500/70' : 'border-zinc-800'}`} />
+            {phoneError && <p className="text-red-400 text-xs mt-1.5" role="alert">{phoneError}</p>}
+          </div>
           <select name="interest" value={formData.interest} onChange={handleChange} required className="w-full bg-[#0a0a0a] border-b border-zinc-800 focus:border-zinc-400 outline-none py-3 text-zinc-400 font-light transition-colors appearance-none cursor-pointer text-base">
             <option value="">{t('contact.form.interest')}</option>
             {interestOptions.map((opt, i) => (
@@ -200,16 +257,23 @@ const ContactModal = ({ isOpen, onClose, preselectedInterest = '' }) => {
 
 // --- Pages ---
 
-const VideoCard = ({ videoId, title, label, labelStyle, distroLink, listenText, compact = false }) => {
+const VideoCard = ({ videoId, title, label, labelStyle, distroLink, listenText, compact = false, className = '' }) => {
   const [expanded, setExpanded] = useState(false);
+  const closeBtnRef = useRef(null);
   const thumb = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
   useEffect(() => {
     if (expanded) {
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+      setTimeout(() => closeBtnRef.current?.focus(), 50);
+      const onKeyDown = (e) => { if (e.key === 'Escape') setExpanded(false); };
+      window.addEventListener('keydown', onKeyDown);
+      return () => {
+        window.removeEventListener('keydown', onKeyDown);
+        document.body.style.overflow = '';
+      };
     }
+    document.body.style.overflow = '';
     return () => { document.body.style.overflow = ''; };
   }, [expanded]);
 
@@ -219,11 +283,11 @@ const VideoCard = ({ videoId, title, label, labelStyle, distroLink, listenText, 
 
   return (
     <>
-      <div className={`flex flex-col items-center rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 ${compact ? 'gap-1.5 p-2 sm:p-2.5' : 'gap-3 p-3 sm:p-4'}`}>
+      <div className={`flex flex-col items-center rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 ${compact ? 'gap-1.5 p-2 sm:p-2.5' : 'gap-3 p-3 sm:p-4'} ${className}`}>
         <span className={`tracking-[0.2em] uppercase leading-none ${compact ? 'text-[9px] sm:text-[10px]' : 'text-[10px] sm:text-xs'}`} style={labelStyle}>{label}</span>
         <p className={`font-serif italic text-white leading-tight ${compact ? 'text-xs sm:text-sm' : 'text-base sm:text-lg'}`}>{title}</p>
         <button type="button" onClick={() => setExpanded(true)} className={thumbWrapClass}>
-          <img src={thumb} alt="" className="w-full h-full object-cover" />
+          <img src={thumb} alt="" decoding="async" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
             <div className={`rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform ${compact ? 'w-9 h-9 sm:w-10 sm:h-10' : 'w-12 h-12 sm:w-14 sm:h-14'}`}>
               <Play size={compact ? 18 : 22} className="fill-white text-white ml-0.5" />
@@ -239,10 +303,10 @@ const VideoCard = ({ videoId, title, label, labelStyle, distroLink, listenText, 
       </div>
 
       {expanded && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-8 animate-fade-in" onClick={() => setExpanded(false)}>
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-8 animate-fade-in" onClick={() => setExpanded(false)} role="dialog" aria-modal="true" aria-label={title}>
           <div className="absolute inset-0 bg-black/90 backdrop-blur-md" />
           <div className="relative w-full max-w-4xl animate-slide-up" onClick={e => e.stopPropagation()}>
-            <button onClick={() => setExpanded(false)}
+            <button ref={closeBtnRef} onClick={() => setExpanded(false)} aria-label="Close"
               className="absolute -top-10 right-0 sm:-top-12 sm:-right-2 text-zinc-400 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center z-10">
               <X size={28} />
             </button>
@@ -250,10 +314,8 @@ const VideoCard = ({ videoId, title, label, labelStyle, distroLink, listenText, 
               <iframe
                 src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
                 title={title}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
                 className="w-full h-full"
               />
             </div>
@@ -265,12 +327,12 @@ const VideoCard = ({ videoId, title, label, labelStyle, distroLink, listenText, 
   );
 };
 
-const HomePage = ({ isMusicPlaying, videoRef }) => {
+const HomePage = ({ videoRef, onNavigate }) => {
   const { t } = useTranslation();
   return (
     <div id="home" className="home-min-viewport relative w-full flex flex-col">
       <div className="absolute inset-0 bg-black">
-        <video ref={videoRef} autoPlay loop playsInline muted preload="auto" className="w-full h-full object-cover opacity-50">
+        <video ref={videoRef} autoPlay loop playsInline muted preload="auto" poster="/background-poster.jpg" className="w-full h-full object-cover opacity-50">
           <source src="/background.mp4" type="video/mp4" />
         </video>
       </div>
@@ -282,6 +344,7 @@ const HomePage = ({ isMusicPlaying, videoRef }) => {
       >
         {/* Top block: subtitle, logo, tagline, CTA — compact vertical rhythm */}
         <div className="shrink-0 flex flex-col items-center gap-1 sm:gap-1.5 md:gap-2 animate-slide-up">
+          <h1 className="sr-only">SHAAYA – Daniel Shaaya, Handpan Artist & Musician</h1>
           <p className="tracking-[0.18em] sm:tracking-[0.25em] text-[10px] sm:text-xs uppercase drop-shadow-lg leading-tight" style={{ color: GOLD }}>{t('home.subtitle')}</p>
           <img
             src="/logo-transparent.png"
@@ -302,9 +365,42 @@ const HomePage = ({ isMusicPlaying, videoRef }) => {
           </div>
         </div>
 
-        {/* Middle: releases */}
-        <div className="flex-1 flex flex-col justify-center py-2 sm:py-3 w-full max-w-[min(100%,42rem)] mx-auto">
-          <div className="grid grid-cols-2 gap-1.5 sm:gap-3 w-full items-stretch">
+        {/* Middle: new album spotlight + releases */}
+        <div className="flex-1 flex flex-col justify-center py-2 sm:py-3 w-full max-w-[min(100%,42rem)] lg:max-w-[min(100%,58rem)] mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-1.5 sm:gap-3 w-full items-stretch">
+            {/* Album spotlight — centered on desktop, on top on mobile */}
+            <button
+              type="button"
+              onClick={() => onNavigate && onNavigate('music')}
+              className="order-1 lg:order-2 col-span-2 lg:col-span-1 group rounded-xl border backdrop-blur-sm bg-gradient-to-br from-zinc-900/70 to-black/50 p-2 sm:p-2.5 flex lg:flex-col items-center gap-2.5 lg:gap-1.5 text-start lg:text-center transition-all duration-300 hover:border-white/40 cursor-pointer"
+              style={{ borderColor: GOLD + '55', boxShadow: `0 0 24px ${GOLD}18` }}
+              aria-label={`INWARD – ${t('home.albumNewLabel')}`}
+            >
+              <div className="relative shrink-0">
+                <img
+                  src="/covers/inward.jpg"
+                  alt="INWARD"
+                  decoding="async"
+                  className="h-[clamp(56px,12svh,96px)] lg:h-[clamp(72px,17svh,150px)] aspect-square w-auto rounded-lg object-cover shadow-lg shadow-black/60 transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <span className="absolute -top-1.5 -start-1.5 px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] tracking-[0.15em] uppercase text-black font-medium" style={{ backgroundColor: GOLD }}>
+                  {t('music.newBadge')}
+                </span>
+              </div>
+              <div className="flex-1 lg:flex-none min-w-0 flex flex-col items-start lg:items-center gap-0.5 lg:gap-1">
+                <span className="text-[9px] sm:text-[10px] tracking-[0.16em] uppercase leading-tight" style={{ color: GOLD }}>
+                  {t('home.albumNewLabel')}
+                </span>
+                <p className="font-serif italic text-white leading-tight text-sm sm:text-base lg:text-lg">INWARD</p>
+                <span
+                  className="btn-sparkle mt-0.5 px-3 py-1.5 sm:px-4 rounded-full text-[9px] sm:text-[10px] tracking-wider uppercase text-black font-medium flex items-center gap-1.5 transition-all duration-300 group-hover:brightness-110"
+                  style={{ backgroundColor: GOLD }}
+                >
+                  <Play size={11} />
+                  {t('home.albumBuyCta')}
+                </span>
+              </div>
+            </button>
             <VideoCard
               videoId="Uas_RFaPxzM"
               title="Afterglow"
@@ -313,6 +409,7 @@ const HomePage = ({ isMusicPlaying, videoRef }) => {
               distroLink="https://distrokid.com/hyperfollow/shaaya/afterglow"
               listenText={t('home.listenNow')}
               compact
+              className="order-2 lg:order-1 h-full"
             />
             <VideoCard
               videoId="5iR5e0fqGlM"
@@ -322,6 +419,7 @@ const HomePage = ({ isMusicPlaying, videoRef }) => {
               distroLink="https://distrokid.com/hyperfollow/shaaya/when-the-steel-is-cold"
               listenText={t('home.listenNow')}
               compact
+              className="order-3 h-full"
             />
           </div>
         </div>
@@ -331,12 +429,12 @@ const HomePage = ({ isMusicPlaying, videoRef }) => {
           <p className="text-[10px] sm:text-xs font-light tracking-[0.12em] sm:tracking-[0.16em] uppercase mb-2 sm:mb-2.5 leading-tight">
             <GoldText>{t('home.partnersHeading')}</GoldText>
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-10">
+          <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 md:gap-8">
             <a
               href={YISHAMA_PARTNER_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center min-h-[40px] w-[min(48%,140px)] sm:w-[min(46%,200px)] md:w-[240px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
+              className="group flex items-center justify-center min-h-[40px] w-[min(30%,120px)] sm:w-[min(30%,160px)] md:w-[190px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
               aria-label={t('home.partnerAltYishama')}
             >
               <img
@@ -349,12 +447,25 @@ const HomePage = ({ isMusicPlaying, videoRef }) => {
               href={KALIMBA_PARTNER_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-center min-h-[40px] w-[min(48%,140px)] sm:w-[min(46%,200px)] md:w-[240px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
+              className="group flex items-center justify-center min-h-[40px] w-[min(30%,120px)] sm:w-[min(30%,160px)] md:w-[190px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
               aria-label={t('home.partnerAltKalimba')}
             >
               <img
                 src="/partners/kalimba-dark.png"
                 alt={t('home.partnerAltKalimba')}
+                className="h-8 sm:h-9 md:h-10 w-full max-h-10 object-contain object-center opacity-95 transition-all duration-300 ease-out drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] group-hover:opacity-100 group-hover:brightness-110 group-hover:saturate-125 group-hover:drop-shadow-[0_0_22px_rgba(201,165,90,0.55)]"
+              />
+            </a>
+            <a
+              href={SAMYAMA_PARTNER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-center min-h-[40px] w-[min(30%,120px)] sm:w-[min(30%,160px)] md:w-[190px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
+              aria-label={t('home.partnerAltSamyama')}
+            >
+              <img
+                src="/partners/samyama.png"
+                alt={t('home.partnerAltSamyama')}
                 className="h-8 sm:h-9 md:h-10 w-full max-h-10 object-contain object-center opacity-95 transition-all duration-300 ease-out drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] group-hover:opacity-100 group-hover:brightness-110 group-hover:saturate-125 group-hover:drop-shadow-[0_0_22px_rgba(201,165,90,0.55)]"
               />
             </a>
@@ -390,7 +501,7 @@ const AboutPage = () => {
           </div>
           <div className="w-full md:w-1/2 relative mt-4 sm:mt-6 md:mt-0">
             <div className="bg-zinc-900 overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 ease-in-out relative group rounded-sm">
-              <img src="/daniel-about.png" alt="Daniel Shaaya" className="w-full h-auto object-contain" />
+              <img src="/daniel-about.png" alt="Daniel Shaaya" loading="lazy" decoding="async" className="w-full h-auto object-contain" />
             </div>
             <div className="absolute -bottom-6 sm:-bottom-8 -right-6 sm:-right-8 w-full h-full z-[-1] hidden md:block" style={{ border: `1px solid ${GOLD}15` }}></div>
           </div>
@@ -438,8 +549,8 @@ const ServicesPage = ({ onOpenContactModal }) => {
                 ))}
               </div>
               <button onClick={() => onOpenContactModal(interestValues[idx] || s.title)} className="w-full mt-auto flex items-center justify-center gap-2 text-white text-[11px] tracking-wider border py-2.5 transition-all hover:text-black" style={{ borderColor: GOLD + '30' }}
-                onMouseEnter={e => { e.target.style.backgroundColor = GOLD; e.target.style.color = '#000'; }}
-                onMouseLeave={e => { e.target.style.backgroundColor = 'transparent'; e.target.style.color = '#fff'; }}>
+                onMouseEnter={e => { e.currentTarget.style.backgroundColor = GOLD; e.currentTarget.style.color = '#000'; }}
+                onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#fff'; }}>
                 {s.cta}
               </button>
             </div>
@@ -450,40 +561,35 @@ const ServicesPage = ({ onOpenContactModal }) => {
   );
 };
 
-const GalleryPage = () => {
-  const { t } = useTranslation();
-  const originals = [
-    { id: 'DIeAdFWN1NE', title: 'ארץ - עידן רייכל' },
-    { id: 'DMXFaa8t6vK', title: 'מנגינת שקיעה' },
-    { id: 'DIi0-gLN9Zs', title: 'צלילים מהלב' },
-    { id: 'DI3VuiWt_BQ', title: 'אלתור חופשי' },
-    { id: 'DNbLNijtrW-', title: 'מעגל קסמים' },
-    { id: 'DPli4NfiD7W', title: 'קצב ונשמה' },
-    { id: 'DRraf2JCGIo', title: 'הופעה חיה' },
-    { id: 'DMXFaa8t6vK', title: 'רגע מוזיקלי' },
-  ];
-  const covers = [
-    { id: 'DNJJNQetzpS', title: 'זכיתי לאהוב - עברי לידר' },
-    { id: 'DAngCE3NuO0', title: 'תוכו רצוף אהבה - ישי ריבו' },
-    { id: 'DM7b2w-NpOv', title: 'דרישת שלום מחיים אחרים - עידן רייכל' },
-    { id: 'DH3CRKcxswT', title: 'מדברים לאט - עידן רייכל' },
-  ];
+const ReelCard = ({ reel }) => {
+  const [wrapRef, inView] = useInView('400px');
+  const [loaded, setLoaded] = useState(false);
 
-  const ReelCard = ({ reel }) => (
+  return (
     <div className="group flex flex-col items-center">
       <a href={`https://www.instagram.com/reel/${reel.id}/`} target="_blank" rel="noopener noreferrer"
         className="relative rounded-[2rem] sm:rounded-[2.5rem] border-[3px] sm:border-4 border-zinc-600 bg-black p-1 sm:p-1.5 shadow-lg shadow-black/50 transition-all duration-300 group-hover:border-zinc-400 group-hover:shadow-xl group-hover:shadow-black/60 w-full block">
         <div className="absolute top-2 sm:top-2.5 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-4 sm:h-5 bg-black rounded-full z-20 border border-zinc-700/50"></div>
         <div className="rounded-[1.6rem] sm:rounded-[2rem] overflow-hidden bg-black relative">
-          <div className="reel-embed-wrapper aspect-[9/16] w-full">
-            <iframe
-              src={`https://www.instagram.com/reel/${reel.id}/embed/`}
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              allowFullScreen
-              scrolling="no"
-              loading="lazy"
-              title={reel.title}
-            />
+          <div ref={wrapRef} className="reel-embed-wrapper aspect-[9/16] w-full">
+            {inView && (
+              <iframe
+                src={`https://www.instagram.com/reel/${reel.id}/embed/`}
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture; web-share"
+                scrolling="no"
+                loading="lazy"
+                title={reel.title}
+                onLoad={() => setLoaded(true)}
+                className={`transition-opacity duration-700 ease-out ${loaded ? 'opacity-100' : 'opacity-0'}`}
+              />
+            )}
+            {!loaded && (
+              <div className="absolute inset-0 reel-skeleton flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
+                  <Play size={18} className="fill-zinc-600 text-zinc-600 ml-0.5" />
+                </div>
+              </div>
+            )}
           </div>
           <div className="absolute inset-0 z-10 sm:hidden flex items-center justify-center">
             <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
@@ -500,6 +606,50 @@ const GalleryPage = () => {
       </div>
     </div>
   );
+};
+
+// Fills the last grid slot and invites visitors to follow on Instagram
+const FollowCard = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="group flex flex-col items-center">
+      <a href="https://www.instagram.com/daniel_shaya" target="_blank" rel="noopener noreferrer"
+        className="relative rounded-[2rem] sm:rounded-[2.5rem] border-[3px] sm:border-4 border-zinc-600 bg-black p-1 sm:p-1.5 shadow-lg shadow-black/50 transition-all duration-300 group-hover:border-zinc-400 group-hover:shadow-xl group-hover:shadow-black/60 w-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+        aria-label="Instagram – @daniel_shaya">
+        <div className="absolute top-2 sm:top-2.5 left-1/2 -translate-x-1/2 w-16 sm:w-20 h-4 sm:h-5 bg-black rounded-full z-20 border border-zinc-700/50"></div>
+        <div className="rounded-[1.6rem] sm:rounded-[2rem] overflow-hidden relative aspect-[9/16] bg-gradient-to-b from-zinc-900 via-[#0d0b08] to-black flex flex-col items-center justify-center gap-3 px-3 text-center">
+          <Instagram size={28} className="transition-transform duration-300 group-hover:scale-110" style={{ color: '#E1306C' }} />
+          <p className="text-[11px] sm:text-xs text-zinc-300 font-light leading-snug">{t('gallery.moreOnInstagram')}</p>
+          <span className="text-[10px] sm:text-xs font-light" style={{ color: GOLD }} dir="ltr">@daniel_shaya</span>
+        </div>
+        <div className="flex justify-center py-1 sm:py-1.5">
+          <div className="w-1/3 h-1 bg-zinc-600 rounded-full"></div>
+        </div>
+      </a>
+      <div className="mt-2.5 sm:mt-3">
+        <p className="text-[11px] sm:text-xs text-zinc-500 font-light text-center leading-snug">{t('gallery.followMe')}</p>
+      </div>
+    </div>
+  );
+};
+
+const GalleryPage = () => {
+  const { t } = useTranslation();
+  const originals = [
+    { id: 'DIeAdFWN1NE', title: 'ארץ - עידן רייכל' },
+    { id: 'DMXFaa8t6vK', title: 'מנגינת שקיעה' },
+    { id: 'DIi0-gLN9Zs', title: 'צלילים מהלב' },
+    { id: 'DI3VuiWt_BQ', title: 'אלתור חופשי' },
+    { id: 'DNbLNijtrW-', title: 'מעגל קסמים' },
+    { id: 'DPli4NfiD7W', title: 'קצב ונשמה' },
+    { id: 'DRraf2JCGIo', title: 'הופעה חיה' },
+  ];
+  const covers = [
+    { id: 'DNJJNQetzpS', title: 'זכיתי לאהוב - עברי לידר' },
+    { id: 'DAngCE3NuO0', title: 'תוכו רצוף אהבה - ישי ריבו' },
+    { id: 'DM7b2w-NpOv', title: 'דרישת שלום מחיים אחרים - עידן רייכל' },
+    { id: 'DH3CRKcxswT', title: 'מדברים לאט - עידן רייכל' },
+  ];
 
   return (
     <PageTransition id="gallery">
@@ -507,7 +657,7 @@ const GalleryPage = () => {
         <div className="text-center mb-8 sm:mb-10">
           <span className="text-xs tracking-[0.2em] uppercase block mb-3" style={{ color: GOLD }}>{t('gallery.label')}</span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-white mb-2 tracking-wide">{t('gallery.title')}<GoldText>{t('gallery.titleGold')}</GoldText></h2>
-          <p className="text-zinc-500 font-light text-sm">{t('gallery.subtitle')}</p>
+          <p className="text-zinc-400 font-light text-sm">{t('gallery.subtitle')}</p>
         </div>
         <div className="mb-12">
           <h3 className="text-lg sm:text-xl font-light text-white mb-6 text-center">
@@ -515,6 +665,7 @@ const GalleryPage = () => {
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
             {originals.map((reel, i) => <ReelCard key={i} reel={reel} />)}
+            <FollowCard />
           </div>
         </div>
         <div>
@@ -530,122 +681,210 @@ const GalleryPage = () => {
   );
 };
 
-// --- Music Page ---
+// --- Music Shop Page ---
+
+const RELEASES = [
+  {
+    id: 'inward',
+    title: 'INWARD',
+    typeKey: 'music.typeEp',
+    year: '2026',
+    price: '$5.94',
+    cover: '/covers/inward.jpg',
+    itunes: 'https://music.apple.com/us/album/inward-ep/6787771547',
+    amazon: 'https://music.amazon.com/artists/B098HLF15T/shaaya',
+    tracks: [
+      { name: 'Between a Story and a Tale', preview: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/19/88/8b/19888b9c-63c1-a0b3-3c02-46236c84b68c/mzaf_12894117201529059392.plus.aac.p.m4a' },
+      { name: 'Geshem', preview: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b3/1c/83/b31c838f-4635-db03-053c-4f807490fef9/mzaf_13945832316417884606.plus.aac.p.m4a' },
+      { name: 'Where the body listens', preview: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/da/61/ec/da61ec69-c7f2-567d-7a88-f8a0cc4ee494/mzaf_9463538586505596765.plus.aac.p.m4a' },
+      { name: 'Jasmine Scent', preview: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/31/09/0d/31090da7-1246-628a-fd46-76fa50912bc3/mzaf_3211555180112719572.plus.aac.p.m4a' },
+      { name: 'Flow Motion', preview: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/4c/80/b0/4c80b074-83ad-2949-c26c-bac37c859b52/mzaf_3080979285786457470.plus.aac.p.m4a' },
+      { name: 'Sparks', preview: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/95/28/04/952804eb-1587-7b08-91e4-552147385550/mzaf_2626283797884234121.plus.aac.p.m4a' }
+    ],
+    isNew: true
+  },
+  {
+    id: 'afterglow',
+    title: 'Afterglow',
+    typeKey: 'music.typeSingle',
+    year: '2026',
+    price: '$1.29',
+    cover: '/covers/afterglow.jpg',
+    itunes: 'https://music.apple.com/us/album/afterglow-single/1879111260',
+    amazon: 'https://music.amazon.com/albums/B0GP2R2RQL',
+    preview: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f1/bd/d7/f1bdd7bd-f91b-5a8c-08a7-1e2f40ce310e/mzaf_16969473337731002242.plus.aac.p.m4a'
+  },
+  {
+    id: 'steel',
+    title: 'When the Steel is Cold',
+    typeKey: 'music.typeSingle',
+    year: '2026',
+    price: '$0.99',
+    cover: '/covers/steel.jpg',
+    itunes: 'https://music.apple.com/us/album/when-the-steel-is-cold-single/1877189108',
+    amazon: 'https://www.amazon.com/dp/B0GMYZ5RW7',
+    preview: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/88/d7/54/88d754b9-52d5-349e-51a1-489f4d51d632/mzaf_16418395601153423300.plus.aac.p.m4a'
+  }
+];
+
+const BuyButtons = ({ release, large = false }) => {
+  const { t } = useTranslation();
+  const base = `flex items-center justify-center gap-2 rounded-full tracking-wider uppercase transition-all duration-300 min-h-[44px] ${large ? 'px-6 py-3 text-xs sm:text-sm' : 'px-4 py-2.5 text-[11px]'}`;
+  return (
+    <div className="flex flex-col sm:flex-row gap-2.5 w-full">
+      <a href={release.itunes} target="_blank" rel="noopener noreferrer"
+        className={`${base} btn-sparkle flex-1 text-black font-medium hover:brightness-110`}
+        style={{ backgroundColor: GOLD }}>
+        <AppleMusicIcon size={large ? 18 : 15} />
+        {t('music.buyItunes')}
+      </a>
+      <a href={release.amazon} target="_blank" rel="noopener noreferrer"
+        className={`${base} flex-1 border text-white hover:bg-white hover:text-black`}
+        style={{ borderColor: GOLD + '60' }}>
+        <AmazonIcon size={large ? 18 : 15} />
+        {t('music.buyAmazon')}
+      </a>
+    </div>
+  );
+};
 
 const MusicPage = () => {
   const { t } = useTranslation();
+  const featured = RELEASES[0];
+  const singles = RELEASES.slice(1);
+  const audioRef = useRef(null);
+  const [playingSrc, setPlayingSrc] = useState(null);
+
+  const togglePreview = (src) => {
+    const audio = audioRef.current;
+    if (!audio || !src) return;
+    if (playingSrc === src) {
+      audio.pause();
+      setPlayingSrc(null);
+      return;
+    }
+    audio.src = src;
+    audio.play().catch(() => {});
+    setPlayingSrc(src);
+  };
+
+  // Stop the preview when leaving the page
+  useEffect(() => () => { audioRef.current?.pause(); }, []);
+
   return (
     <PageTransition id="music">
-      <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
-        <div className="text-center mb-10 sm:mb-14 space-y-2">
+      <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
+        <div className="text-center mb-8 sm:mb-12 space-y-2">
           <span className="text-xs tracking-[0.2em] uppercase" style={{ color: GOLD }}>{t('music.label')}</span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-white"><GoldText>{t('music.title')}</GoldText></h2>
-          <p className="text-zinc-500 font-light text-sm">{t('music.subtitle')}</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-white">{t('music.shopTitle')}<GoldText>{t('music.shopTitleGold')}</GoldText></h2>
+          <p className="text-zinc-400 font-light text-sm max-w-xl mx-auto">{t('music.shopSubtitle')}</p>
         </div>
 
-        <div className="space-y-10 sm:space-y-14">
-
-          {/* Afterglow - Latest Release */}
-          <div className="space-y-6 p-5 sm:p-6 rounded-xl border border-white/10 bg-white/[0.02]">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: GOLD + '20' }}>
-                  <Sparkles size={16} style={{ color: GOLD }} />
+        {/* Featured EP */}
+        <div className="relative rounded-2xl border bg-gradient-to-br from-zinc-900/60 to-[#080808] overflow-hidden mb-8 sm:mb-10" style={{ borderColor: GOLD + '35' }}>
+          <div className="flex flex-col md:flex-row">
+            <div className="relative md:w-[42%] shrink-0">
+              <img src={featured.cover} alt={featured.title} decoding="async" className="w-full h-full aspect-square object-cover" />
+              <span className="absolute top-4 start-4 px-3 py-1 rounded-full text-[10px] tracking-[0.2em] uppercase text-black font-medium" style={{ backgroundColor: GOLD }}>{t('music.newBadge')}</span>
+            </div>
+            <div className="flex-1 p-5 sm:p-8 flex flex-col gap-4 sm:gap-5">
+              <div>
+                <span className="text-[11px] tracking-[0.2em] uppercase" style={{ color: GOLD }}>
+                  {t(featured.typeKey)} · {featured.year} · {t('music.trackCount', { num: featured.tracks.length })}
+                </span>
+                <h3 className="text-3xl sm:text-4xl font-light text-white mt-1 tracking-wide">{featured.title}</h3>
+              </div>
+              <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1" dir="ltr">
+                {featured.tracks.map((track, i) => {
+                  const isPlaying = playingSrc === track.preview;
+                  return (
+                    <li key={i}>
+                      <button
+                        type="button"
+                        onClick={() => togglePreview(track.preview)}
+                        className={`w-full flex items-center gap-2.5 py-0.5 text-sm font-light text-start transition-colors rounded ${isPlaying ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
+                        aria-label={`${t('music.previewLabel')} – ${track.name}`}
+                      >
+                        <span className="w-4 shrink-0 flex items-center justify-center" style={{ color: GOLD }}>
+                          {isPlaying ? <Pause size={12} /> : <Play size={12} className="opacity-70" />}
+                        </span>
+                        {track.name}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ol>
+              <p className="text-[10px] text-zinc-600 -mt-2" dir="ltr">{t('music.previewHint')}</p>
+              <div className="mt-auto pt-1 space-y-3">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-2xl font-light text-white">{featured.price}</span>
+                  <span className="text-xs text-zinc-500">{t('music.fullEp')}</span>
                 </div>
-                <div>
-                  <h3 className="text-lg font-light text-white">Afterglow</h3>
-                  <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: GOLD }}>New Release</span>
-                </div>
-              </div>
-              <a href="https://distrokid.com/hyperfollow/shaaya/afterglow" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 border rounded-full text-xs tracking-wider uppercase transition-all duration-300 hover:bg-white hover:text-black"
-                style={{ borderColor: GOLD + '40', color: GOLD }}>
-                <Play size={12} />
-                {t('home.listenNow')}
-                <ExternalLink size={12} />
-              </a>
-            </div>
-            <div className="rounded-xl overflow-hidden">
-              <iframe
-                style={{ borderRadius: '12px' }}
-                src="https://open.spotify.com/embed/album/3Y3Fqmf0lVdEaPZHtbyBGb"
-                width="100%"
-                height="352"
-                frameBorder="0"
-                allowFullScreen
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-                title="Spotify - Afterglow"
-              />
-            </div>
-          </div>
-
-          {/* When the Steel is Cold */}
-          <div className="space-y-6 p-5 sm:p-6 rounded-xl border border-white/5 bg-white/[0.01]">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/5">
-                  <Music size={16} className="text-zinc-400" />
-                </div>
-                <h3 className="text-lg font-light text-white">When the Steel is Cold</h3>
-              </div>
-              <a href="https://distrokid.com/hyperfollow/shaaya/when-the-steel-is-cold" target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 border rounded-full text-xs tracking-wider uppercase transition-all duration-300 hover:bg-white hover:text-black border-white/20 text-zinc-400">
-                <Play size={12} />
-                {t('home.listenNow')}
-                <ExternalLink size={12} />
-              </a>
-            </div>
-
-            {/* Apple Music */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <AppleMusicIcon size={16} className="text-[#FC3C44]" />
-                <span className="text-sm text-zinc-400">{t('music.appleMusicTitle')}</span>
-              </div>
-              <div className="rounded-xl overflow-hidden bg-zinc-900/50 border border-white/5">
-                <iframe
-                  allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-                  frameBorder="0"
-                  height="175"
-                  style={{ width: '100%', maxWidth: '660px', overflow: 'hidden', borderRadius: '10px', margin: '0 auto', display: 'block' }}
-                  sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-                  src="https://embed.music.apple.com/il/song/when-the-steel-is-cold/1877189109"
-                  title="Apple Music - When the Steel is Cold"
-                />
-              </div>
-            </div>
-
-            {/* Spotify */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <SpotifyIcon size={16} className="text-[#1DB954]" />
-                <span className="text-sm text-zinc-400">{t('music.spotifyTitle')}</span>
-              </div>
-              <div className="rounded-xl overflow-hidden">
-                <iframe
-                  style={{ borderRadius: '12px' }}
-                  src="https://open.spotify.com/embed/track/6ILXxlykjl3FWNhB5l52uD"
-                  width="100%"
-                  height="352"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  title="Spotify - When the Steel is Cold"
-                />
+                <BuyButtons release={featured} large />
               </div>
             </div>
           </div>
+        </div>
 
-          {/* YouTube */}
-          <div className="text-center">
+        {/* Singles */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-10 sm:mb-12">
+          {singles.map((release) => (
+            <div key={release.id} className="group rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden hover:border-white/25 transition-all duration-300 flex flex-col">
+              <div className="overflow-hidden">
+                <img src={release.cover} alt={release.title} loading="lazy" decoding="async" className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div className="p-4 sm:p-5 flex flex-col gap-3 flex-1">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <span className="text-[10px] tracking-[0.2em] uppercase text-zinc-400">{t(release.typeKey)} · {release.year}</span>
+                    <h3 className="text-lg sm:text-xl font-light text-white">{release.title}</h3>
+                  </div>
+                  <span className="text-lg font-light shrink-0" style={{ color: GOLD }}>{release.price}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => togglePreview(release.preview)}
+                  className={`self-start flex items-center gap-1.5 text-[11px] tracking-wider uppercase transition-colors ${playingSrc === release.preview ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
+                  aria-label={`${t('music.previewLabel')} – ${release.title}`}
+                >
+                  {playingSrc === release.preview ? <Pause size={12} style={{ color: GOLD }} /> : <Play size={12} style={{ color: GOLD }} />}
+                  {t('music.previewLabel')}
+                </button>
+                <div className="mt-auto">
+                  <BuyButtons release={release} />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Support CTA */}
+        <div className="text-center rounded-xl border px-6 py-8 sm:py-10 mb-10 sm:mb-12" style={{ borderColor: GOLD + '30', backgroundColor: GOLD + '08' }}>
+          <Heart size={20} className="mx-auto mb-3" style={{ color: GOLD }} />
+          <h3 className="text-lg sm:text-2xl font-light text-white mb-2">{t('music.ctaTitle')}<GoldText>{t('music.ctaTitleGold')}</GoldText></h3>
+          <p className="text-zinc-400 font-light text-sm max-w-lg mx-auto">{t('music.ctaText')}</p>
+        </div>
+
+        <audio ref={audioRef} onEnded={() => setPlayingSrc(null)} preload="none" />
+
+        {/* Streaming */}
+        <div className="text-center space-y-4">
+          <p className="text-xs tracking-[0.15em] uppercase text-zinc-400">{t('music.streamingPrompt')}</p>
+          <div className="flex justify-center items-center gap-3">
+            <a href="https://open.spotify.com/artist/7sjTH5RSnYRzdKt6MwVahE" target="_blank" rel="noopener noreferrer"
+              className="p-3 rounded-full border border-white/10 text-zinc-400 hover:text-[#1DB954] hover:border-white/30 transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label="Spotify">
+              <SpotifyIcon size={18} />
+            </a>
+            <a href="https://music.apple.com/il/artist/shaaya/1876665852" target="_blank" rel="noopener noreferrer"
+              className="p-3 rounded-full border border-white/10 text-zinc-400 hover:text-[#FC3C44] hover:border-white/30 transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label="Apple Music">
+              <AppleMusicIcon size={18} />
+            </a>
             <a href="https://www.youtube.com/channel/UC80_83SPXBji6OsByzC5NRA" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 border rounded-full transition-all duration-300 hover:bg-white hover:text-black group"
-              style={{ borderColor: GOLD + '40', color: GOLD }}>
-              <Youtube size={22} className="group-hover:text-red-500 transition-colors" />
-              <span className="tracking-wider text-sm uppercase">{t('music.watchOnYoutube')}</span>
-              <ExternalLink size={14} />
+              className="p-3 rounded-full border border-white/10 text-zinc-400 hover:text-red-500 hover:border-white/30 transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label="YouTube">
+              <Youtube size={18} />
             </a>
           </div>
         </div>
@@ -675,7 +914,7 @@ const RecommendationsPage = () => {
         <div className="text-center mb-6 sm:mb-8 space-y-2">
           <span className="text-xs tracking-[0.2em] uppercase" style={{ color: GOLD }}>{t('recommendations.label')}</span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-white">{t('recommendations.title')}<GoldText>{t('recommendations.titleGold')}</GoldText></h2>
-          <p className="text-zinc-500 font-light text-xs sm:text-sm max-w-lg mx-auto">{t('recommendations.subtitle')}</p>
+          <p className="text-zinc-400 font-light text-xs sm:text-sm max-w-lg mx-auto">{t('recommendations.subtitle')}</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {items.map((item, i) => (
@@ -711,14 +950,15 @@ const ContactPage = () => {
   const formRef = useRef(null);
   const [formData, setFormData] = useState({ name: '', phone: '', interest: '', message: '' });
   const [status, setStatus] = useState('idle');
+  const [phoneError, setPhoneError] = useState('');
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'phone') { setFormData(prev => ({ ...prev, [name]: value.replace(/\D/g, '').slice(0, 10) })); }
+    if (name === 'phone') { setFormData(prev => ({ ...prev, [name]: sanitizePhone(value) })); setPhoneError(''); }
     else { setFormData(prev => ({ ...prev, [name]: value })); }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.phone.length !== 10) { alert(t('contact.form.phoneError')); return; }
+    if (!isValidPhone(formData.phone)) { setPhoneError(t('contact.form.phoneError')); return; }
     setStatus('sending');
     const msg = `*פנייה חדשה מהאתר* 🎵\n\n*שם:* ${formData.name}\n*טלפון:* ${formData.phone}\n*סוג התעניינות:* ${formData.interest}\n\n*הודעה:*\n${formData.message}`;
     window.open(`https://wa.me/972526464647?text=${encodeURIComponent(msg)}`, '_blank');
@@ -759,7 +999,10 @@ const ContactPage = () => {
           </div>
           <form ref={formRef} className="space-y-6 sm:space-y-8" onSubmit={handleSubmit}>
             <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder={t('contact.form.name')} required className="w-full bg-transparent border-b border-zinc-800 focus:border-zinc-400 outline-none py-3 sm:py-4 text-white font-light transition-colors placeholder:text-zinc-700 text-base" />
-            <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder={t('contact.form.phone')} required pattern="\d{10}" minLength="10" maxLength="10" dir={isRtl ? 'rtl' : 'ltr'} className={`w-full bg-transparent border-b border-zinc-800 focus:border-zinc-400 outline-none py-3 sm:py-4 text-white font-light transition-colors placeholder:text-zinc-700 text-base ${isRtl ? 'text-right' : 'text-left'}`} />
+            <div>
+              <input type="tel" inputMode="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder={t('contact.form.phone')} required maxLength="16" dir="ltr" aria-invalid={!!phoneError} className={`w-full bg-transparent border-b focus:border-zinc-400 outline-none py-3 sm:py-4 text-white font-light transition-colors placeholder:text-zinc-700 text-base ${isRtl ? 'text-right' : 'text-left'} ${phoneError ? 'border-red-500/70' : 'border-zinc-800'}`} />
+              {phoneError && <p className="text-red-400 text-xs mt-1.5" role="alert">{phoneError}</p>}
+            </div>
             <select name="interest" value={formData.interest} onChange={handleChange} required className="w-full bg-[#050505] border-b border-zinc-800 focus:border-zinc-400 outline-none py-3 sm:py-4 text-zinc-400 font-light transition-colors appearance-none cursor-pointer text-base">
               <option value="">{t('contact.form.interest')}</option>
               {interestOptions.map((opt, i) => (
@@ -769,8 +1012,8 @@ const ContactPage = () => {
             <textarea rows="4" name="message" value={formData.message} onChange={handleChange} placeholder={t('contact.form.message')} required className="w-full bg-transparent border-b border-zinc-800 focus:border-zinc-400 outline-none py-3 sm:py-4 text-white font-light transition-colors resize-none placeholder:text-zinc-700 text-base"></textarea>
             <button type="submit" disabled={status === 'sending'} className={`w-full px-10 sm:px-12 py-4 border text-white hover:text-black transition-all duration-500 tracking-widest text-sm uppercase flex items-center justify-center gap-3 min-h-[48px] ${status === 'sending' ? 'opacity-50 cursor-not-allowed border-zinc-700' : ''} ${status === 'sent' ? 'border-green-500/50 text-green-400' : ''}`}
               style={{ borderColor: status === 'idle' ? GOLD + '50' : undefined }}
-              onMouseEnter={e => { if (status === 'idle') { e.target.style.backgroundColor = GOLD; } }}
-              onMouseLeave={e => { e.target.style.backgroundColor = 'transparent'; }}>
+              onMouseEnter={e => { if (status === 'idle') { e.currentTarget.style.backgroundColor = GOLD; } }}
+              onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; }}>
               {status === 'idle' && <><Send size={16} />{t('contact.form.send')}</>}
               {status === 'sending' && <><Loader2 size={16} className="animate-spin" />{t('contact.form.sending')}</>}
               {status === 'sent' && <><CheckCircle size={16} />{t('contact.form.sent')}</>}
@@ -785,10 +1028,10 @@ const ContactPage = () => {
 
 // --- Mobile Full Page (single-page scroll) ---
 
-const MobileFullPage = ({ isMusicPlaying, videoRef, onOpenContactModal }) => {
+const MobileFullPage = ({ videoRef, onOpenContactModal, onNavigate }) => {
   return (
     <div className="mobile-full-page">
-      <HomePage isMusicPlaying={isMusicPlaying} videoRef={videoRef} />
+      <HomePage videoRef={videoRef} onNavigate={onNavigate} />
       <div className="w-16 h-[1px] mx-auto" style={{ backgroundColor: GOLD + '30' }}></div>
       <AboutPage />
       <div className="w-16 h-[1px] mx-auto" style={{ backgroundColor: GOLD + '30' }}></div>
@@ -807,36 +1050,66 @@ const MobileFullPage = ({ isMusicPlaying, videoRef, onOpenContactModal }) => {
 
 // --- Main App ---
 
+const PAGE_IDS = ['home', 'about', 'services', 'gallery', 'music', 'recommendations', 'contact'];
+
+const pageFromHash = () => {
+  const h = window.location.hash.slice(1);
+  return PAGE_IDS.includes(h) ? h : 'home';
+};
+
 const App = () => {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === 'he';
   const isMobile = useIsMobile();
-  const [activePage, setActivePage] = useState('home');
+  const [activePage, setActivePage] = useState(pageFromHash);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [contactModalInterest, setContactModalInterest] = useState('');
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
-  const [isVideoReady, setIsVideoReady] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [heroVisible, setHeroVisible] = useState(true);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const videoRef = useRef(null);
 
   useEffect(() => {
-    const h = () => setScrolled(window.scrollY > 50);
+    const h = () => {
+      setScrolled(window.scrollY > 50);
+      setShowBackToTop(window.scrollY > 900);
+    };
     window.addEventListener('scroll', h, { passive: true });
     return () => window.removeEventListener('scroll', h);
   }, []);
 
+  // Mobile: track which section is on screen (scroll-spy) and whether the hero is visible
+  useEffect(() => {
+    if (!isMobile || !('IntersectionObserver' in window)) return;
+    const sections = PAGE_IDS.map((id) => document.getElementById(id)).filter(Boolean);
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) setActiveSection(entry.target.id); });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach((s) => spy.observe(s));
+
+    let heroObs;
+    const hero = document.getElementById('home');
+    if (hero) {
+      heroObs = new IntersectionObserver(([entry]) => setHeroVisible(entry.isIntersecting), { threshold: 0.15 });
+      heroObs.observe(hero);
+    }
+    return () => { spy.disconnect(); heroObs?.disconnect(); };
+  }, [isMobile]);
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    const onPlaying = () => setIsVideoReady(true);
-    video.addEventListener('playing', onPlaying);
     video.muted = true;
     setIsMusicPlaying(false);
-    video.play().then(() => {
-      setIsVideoReady(true);
-    }).catch(() => {});
-    return () => { video.removeEventListener('playing', onPlaying); };
+    // Respect reduced-motion preference: show the poster instead of the moving video
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.pause();
+      return;
+    }
+    video.play().catch(() => {});
   }, []);
 
   const toggleMusic = () => {
@@ -871,11 +1144,28 @@ const App = () => {
       const el = document.getElementById(page);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
+        window.history.replaceState(null, '', `#${page}`);
       }
     } else {
       setActivePage(page);
+      window.history.pushState(null, '', `#${page}`);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+  }, [isMobile]);
+
+  // Sync page with URL hash (back/forward buttons, direct links)
+  useEffect(() => {
+    const onHashChange = () => {
+      const page = pageFromHash();
+      if (isMobile) {
+        const el = document.getElementById(page);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        setActivePage(page);
+      }
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
   }, [isMobile]);
 
   const openContactModal = (interest = '') => { setContactModalInterest(interest); setContactModalOpen(true); };
@@ -893,21 +1183,21 @@ const App = () => {
 
   const renderPage = () => {
     if (isMobile) {
-      return <MobileFullPage isMusicPlaying={isMusicPlaying} videoRef={videoRef} onOpenContactModal={openContactModal} />;
+      return <MobileFullPage videoRef={videoRef} onOpenContactModal={openContactModal} onNavigate={navigateTo} />;
     }
     switch(activePage) {
-      case 'home': return <HomePage isMusicPlaying={isMusicPlaying} videoRef={videoRef} />;
+      case 'home': return <HomePage videoRef={videoRef} onNavigate={navigateTo} />;
       case 'about': return <AboutPage />;
       case 'services': return <ServicesPage onOpenContactModal={openContactModal} />;
       case 'gallery': return <GalleryPage />;
       case 'music': return <MusicPage />;
       case 'recommendations': return <RecommendationsPage />;
       case 'contact': return <ContactPage />;
-      default: return <HomePage isMusicPlaying={isMusicPlaying} videoRef={videoRef} />;
+      default: return <HomePage videoRef={videoRef} onNavigate={navigateTo} />;
     }
   };
 
-  const showMusicButton = isMobile || activePage === 'home';
+  const showMusicButton = isMobile ? heroVisible : activePage === 'home';
 
   return (
     <div className="min-h-screen bg-[#050505] text-zinc-100 font-sans selection:bg-white/20 overflow-x-hidden" dir={isRtl ? 'rtl' : 'ltr'}>
@@ -938,13 +1228,16 @@ const App = () => {
         {isMenuOpen && (
           <div className="fixed top-0 left-0 w-full h-[100dvh] bg-[#050505] z-40 flex flex-col items-center justify-center gap-7 sm:gap-10 text-xl sm:text-2xl font-light tracking-widest animate-fade-in safe-top safe-bottom">
             <button className="absolute top-4 left-4 text-white min-w-[44px] min-h-[44px] flex items-center justify-center" onClick={() => setIsMenuOpen(false)}><X size={28} /></button>
-            {menuItems.map((item) => (
-              <button key={item.id} onClick={() => navigateTo(item.id)}
-                className={`transition-colors min-h-[44px] flex items-center ${!isMobile && activePage === item.id ? 'underline underline-offset-8 decoration-1' : 'text-zinc-400'}`}
-                style={!isMobile && activePage === item.id ? { color: GOLD } : {}}>
-                {item.label}
-              </button>
-            ))}
+            {menuItems.map((item) => {
+              const isActive = isMobile ? activeSection === item.id : activePage === item.id;
+              return (
+                <button key={item.id} onClick={() => navigateTo(item.id)}
+                  className={`transition-colors min-h-[44px] flex items-center ${isActive ? 'underline underline-offset-8 decoration-1' : 'text-zinc-400'}`}
+                  style={isActive ? { color: GOLD } : {}}>
+                  {item.label}
+                </button>
+              );
+            })}
             <div className="pt-4 sm:pt-8"><SocialLinks size={22} /></div>
           </div>
         )}
@@ -956,7 +1249,7 @@ const App = () => {
       {(isMobile || activePage !== 'home') && (
         <footer className="py-6 sm:py-8 bg-black border-t border-white/5 safe-bottom">
           <div className="container mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-zinc-700 text-xs tracking-widest">&copy; {new Date().getFullYear()} SHAAYA. {t('footer.rights')}</p>
+            <p className="text-zinc-500 text-xs tracking-widest">&copy; {new Date().getFullYear()} SHAAYA. {t('footer.rights')}</p>
             <SocialLinks size={16} className="opacity-50 hover:opacity-100 transition-opacity" />
             <div className="opacity-30 hover:opacity-100 transition-opacity cursor-pointer" onClick={() => navigateTo('home')}><Logo className="h-6 sm:h-8" /></div>
           </div>
@@ -969,6 +1262,16 @@ const App = () => {
           className={`fixed bottom-[max(1rem,env(safe-area-inset-bottom,0px))] start-4 sm:start-8 z-40 backdrop-blur-md border text-white p-3 sm:p-3.5 rounded-full transition-all duration-500 group min-w-[44px] min-h-[44px] sm:min-w-[48px] sm:min-h-[48px] flex items-center justify-center animate-fade-in touch-manipulation ${isMusicPlaying ? 'bg-white/10 border-white/20' : 'bg-white/15 border-white/30 animate-music-pulse hover:bg-white hover:text-black'}`}
           aria-label={isMusicPlaying ? t('home.muteMusic') : t('home.playMusic')}>
           {isMusicPlaying ? <Volume2 size={22} className="group-hover:scale-110 transition-transform" /> : <VolumeX size={22} className="group-hover:scale-110 transition-transform" />}
+        </button>
+      )}
+
+      {/* Back to top (mobile long page) */}
+      {isMobile && showBackToTop && !isMenuOpen && (
+        <button type="button"
+          onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); window.history.replaceState(null, '', '#home'); }}
+          className="fixed bottom-[max(1rem,env(safe-area-inset-bottom,0px))] end-4 z-40 backdrop-blur-md bg-white/10 border border-white/20 text-white p-3 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center animate-fade-in touch-manipulation hover:bg-white hover:text-black transition-colors"
+          aria-label={t('nav.backToTop')}>
+          <ChevronUp size={22} />
         </button>
       )}
 

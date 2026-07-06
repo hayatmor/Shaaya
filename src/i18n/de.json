@@ -6,7 +6,8 @@
     "gallery": "Videos",
     "music": "Musik",
     "recommendations": "Empfehlungen",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "backToTop": "Nach oben"
   },
   "home": {
     "subtitle": "Handpan Artist & Musician",
@@ -18,11 +19,14 @@
     "cta": "Kontakt aufnehmen",
     "latestRelease": "Neuerscheinung",
     "listenNow": "Jetzt anhören",
+    "albumNewLabel": "Mein Debütalbum ist da",
+    "albumBuyCta": "Album kaufen",
     "muteMusic": "Musik stumm schalten",
     "playMusic": "Musik abspielen",
     "partnersHeading": "Stolz unterstützt von",
     "partnerAltYishama": "Yishama",
-    "partnerAltKalimba": "Kalimba – ethnische Instrumente"
+    "partnerAltKalimba": "Kalimba – ethnische Instrumente",
+    "partnerAltSamyama": "Samyama – therapeutische Klangheilungsinstrumente"
   },
   "about": {
     "label": "Über mich",
@@ -97,15 +101,28 @@
     "originals": "Original-",
     "originalsGold": "Kreationen",
     "coversGold": "Covers",
-    "coversRest": ""
+    "coversRest": "",
+    "moreOnInstagram": "Mehr Videos und Momente aus dem Studio und von Auftritten",
+    "followMe": "Auf Instagram folgen"
   },
   "music": {
-    "label": "Musik",
-    "title": "Musik",
-    "subtitle": "Hören Sie meine Klänge auf allen Plattformen",
-    "appleMusicTitle": "Apple Music",
-    "spotifyTitle": "Spotify",
-    "youtubeTitle": "Auf YouTube ansehen",
+    "label": "Music Shop",
+    "shopTitle": "Meine ",
+    "shopTitleGold": "Musik",
+    "shopSubtitle": "Meine Alben und Singles sind digital erhältlich – jeder Kauf unterstützt die Musik direkt",
+    "newBadge": "Neu",
+    "typeEp": "EP",
+    "typeSingle": "Single",
+    "trackCount": "{{num}} Titel",
+    "fullEp": "komplette EP",
+    "buyItunes": "Bei iTunes kaufen",
+    "buyAmazon": "Bei Amazon kaufen",
+    "ctaTitle": "Nimm die Klänge mit ",
+    "ctaTitleGold": "nach Hause",
+    "ctaText": "Mit jedem Kauf ermöglichst du mir, weiter zu komponieren, aufzunehmen und neue Klänge in die Welt zu bringen. Danke, dass du Teil dieser Reise bist.",
+    "previewLabel": "Hörprobe",
+    "previewHint": "Titel antippen für eine 30-Sekunden-Hörprobe",
+    "streamingPrompt": "Lieber streamen?",
     "watchOnYoutube": "YouTube-Kanal"
   },
   "recommendations": {
@@ -127,15 +144,15 @@
     "followMe": "Folge mir",
     "form": {
       "name": "Vollständiger Name",
-      "phone": "Telefon (10 Ziffern)",
+      "phone": "Telefon",
       "interest": "Interessensgebiet wählen",
       "interestOptions": ["Live-Events & Auftritte", "Paar-Workshop", "Familien-Workshop", "Team-Workshop", "Privatunterricht", "Sonstiges"],
       "message": "Ihre Nachricht...",
       "send": "Nachricht senden",
       "sending": "Wird gesendet...",
-      "sent": "Erfolgreich gesendet!",
+      "sent": "WhatsApp geöffnet – dort bitte absenden",
       "error": "Fehler, versuchen Sie es erneut",
-      "phoneError": "Telefonnummer muss 10 Ziffern enthalten"
+      "phoneError": "Ungültige Telefonnummer – 7 bis 15 Ziffern erforderlich"
     }
   },
   "modal": {

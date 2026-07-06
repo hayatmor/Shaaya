@@ -6,7 +6,8 @@
     "gallery": "וידאו",
     "music": "מוזיקה",
     "recommendations": "המלצות",
-    "contact": "צור קשר"
+    "contact": "צור קשר",
+    "backToTop": "חזרה למעלה"
   },
   "home": {
     "subtitle": "Handpan Artist & Musician",
@@ -17,11 +18,14 @@
     "cta": "ליצירת קשר",
     "latestRelease": "השקה חדשה",
     "listenNow": "האזינו עכשיו",
+    "albumNewLabel": "האלבום הראשון שלי שוחרר",
+    "albumBuyCta": "לרכישת האלבום",
     "muteMusic": "השתק מוזיקה",
     "playMusic": "הפעל מוזיקה",
     "partnersHeading": "שותפים לדרך",
     "partnerAltYishama": "Yishama",
-    "partnerAltKalimba": "קלימבה – כלי נגינה אתניים"
+    "partnerAltKalimba": "קלימבה – כלי נגינה אתניים",
+    "partnerAltSamyama": "Samyama – כלי נגינה טיפוליים לסאונד הילינג"
   },
   "about": {
     "label": "אודות",
@@ -95,15 +99,28 @@
     "originals": "יצירות ",
     "originalsGold": "מקוריות",
     "coversGold": "קאברים",
-    "coversRest": " Covers"
+    "coversRest": " Covers",
+    "moreOnInstagram": "עוד סרטונים ורגעים מהסטודיו ומההופעות",
+    "followMe": "עקבו באינסטגרם"
   },
   "music": {
-    "label": "Music",
-    "title": "מוזיקה",
-    "subtitle": "האזינו לצלילים שלי בכל הפלטפורמות",
-    "appleMusicTitle": "Apple Music",
-    "spotifyTitle": "Spotify",
-    "youtubeTitle": "צפו בערוץ היוטיוב",
+    "label": "Music Shop",
+    "shopTitle": "המוזיקה ",
+    "shopTitleGold": "שלי",
+    "shopSubtitle": "האלבומים והסינגלים שלי זמינים לרכישה דיגיטלית – כל רכישה תומכת ביצירה באופן ישיר",
+    "newBadge": "חדש",
+    "typeEp": "אלבום EP",
+    "typeSingle": "סינגל",
+    "trackCount": "{{num}} יצירות",
+    "fullEp": "לאלבום המלא",
+    "buyItunes": "לרכישה ב-iTunes",
+    "buyAmazon": "לרכישה ב-Amazon",
+    "ctaTitle": "קחו את הצלילים ",
+    "ctaTitleGold": "הביתה",
+    "ctaText": "כשאתם רוכשים את המוזיקה, אתם מאפשרים לי להמשיך ליצור, להקליט ולהביא צלילים חדשים לעולם. תודה שאתם חלק מהמסע.",
+    "previewLabel": "האזנה מקדימה",
+    "previewHint": "לחצו על שם היצירה לפתיח של 30 שניות",
+    "streamingPrompt": "מעדיפים סטרימינג?",
     "watchOnYoutube": "לערוץ היוטיוב"
   },
   "recommendations": {
@@ -125,15 +142,15 @@
     "followMe": "עקבו אחריי",
     "form": {
       "name": "שם מלא",
-      "phone": "טלפון (10 ספרות)",
+      "phone": "טלפון",
       "interest": "בחר סוג התעניינות",
       "interestOptions": ["נגינה באירועים והופעות", "סדנה זוגית", "סדנה למשפחות", "סדנה לצוותים", "שיעורים פרטיים", "אחר"],
       "message": "ההודעה שלך...",
       "send": "שלח הודעה",
       "sending": "שולח...",
-      "sent": "נשלח בהצלחה!",
+      "sent": "וואטסאפ נפתח – שלחו שם את ההודעה",
       "error": "שגיאה, נסה שנית",
-      "phoneError": "מספר הטלפון חייב להכיל 10 ספרות"
+      "phoneError": "מספר טלפון לא תקין – נדרשות 7 עד 15 ספרות"
     }
   },
   "modal": {

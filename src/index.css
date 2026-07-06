@@ -19,6 +19,36 @@ html {
   scroll-margin-top: 64px;
 }
 
+/* Visible keyboard focus for all interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(201, 165, 90, 0.75);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-music-pulse,
+  .btn-sparkle,
+  .reel-skeleton {
+    animation: none !important;
+  }
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* LTR adjustments */
 [dir="ltr"] .font-serif {
   font-family: 'Playfair Display', serif;
@@ -146,6 +176,18 @@ body::-webkit-scrollbar-thumb {
   overflow: hidden;
   border-radius: 8px;
   background: #080808;
+  /* Isolate layout/paint of each heavy embed so scrolling stays smooth */
+  contain: layout paint;
+}
+
+/* Skeleton shown while an embed loads */
+@keyframes skeletonPulse {
+  0%, 100% { background-color: #0c0c0c; }
+  50% { background-color: #141414; }
+}
+
+.reel-skeleton {
+  animation: skeletonPulse 1.8s ease-in-out infinite;
 }
 
 .reel-embed-wrapper iframe {
