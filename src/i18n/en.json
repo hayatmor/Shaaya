@@ -1,4 +1,15 @@
 {
+  "seo": {
+    "titles": {
+      "home": "SHAAYA | Handpan Artist & Musician",
+      "about": "SHAAYA | About Daniel Shaaya",
+      "services": "SHAAYA | Pantam Workshops & Shows",
+      "gallery": "SHAAYA | Videos",
+      "music": "SHAAYA | Music",
+      "recommendations": "SHAAYA | Testimonials",
+      "contact": "SHAAYA | Contact"
+    }
+  },
   "nav": {
     "home": "Home",
     "about": "About",
@@ -159,6 +170,7 @@
     "subtitle": "Fill in your details and we'll get back to you soon"
   },
   "footer": {
-    "rights": "ALL RIGHTS RESERVED."
+    "rights": "ALL RIGHTS RESERVED.",
+    "tagline": "SHAAYA - Daniel Shaaya | Handpan (pantam) artist: live performances, handpan workshops for couples, families and teams, private lessons and original music in Israel."
   }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.shaaya.co.il/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.shaaya.co.il/daniel-about.png</image:loc>
+      <image:title>Daniel Shaaya - Handpan Artist</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.shaaya.co.il/covers/inward.jpg</image:loc>
+      <image:title>INWARD - Handpan EP by SHAAYA</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.shaaya.co.il/covers/afterglow.jpg</image:loc>
+      <image:title>Afterglow - Handpan Single by SHAAYA</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.shaaya.co.il/covers/steel.jpg</image:loc>
+      <image:title>When the Steel is Cold - Handpan Single by SHAAYA</image:title>
+    </image:image>
+  </url>
+</urlset>

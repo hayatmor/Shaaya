@@ -1,4 +1,15 @@
 {
+  "seo": {
+    "titles": {
+      "home": "SHAAYA | אמן האנדפאן והפנטם",
+      "about": "SHAAYA | אודות דניאל שעיה",
+      "services": "SHAAYA | סדנאות פנטם והופעות",
+      "gallery": "SHAAYA | וידאו",
+      "music": "SHAAYA | מוזיקה",
+      "recommendations": "SHAAYA | המלצות",
+      "contact": "SHAAYA | צור קשר"
+    }
+  },
   "nav": {
     "home": "ראשי",
     "about": "אודות",
@@ -159,6 +170,7 @@
     "subtitle": "מלאו את הפרטים ונחזור אליכם בהקדם"
   },
   "footer": {
-    "rights": "ALL RIGHTS RESERVED."
+    "rights": "ALL RIGHTS RESERVED.",
+    "tagline": "SHAAYA - דניאל שעיה | אמן האנדפאן (פנטם): הופעות חיות, סדנאות פנטם לזוגות, משפחות וארגונים, שיעורים פרטיים ומוזיקה מקורית בישראל."
   }
 }

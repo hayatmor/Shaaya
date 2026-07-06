@@ -287,7 +287,7 @@ const VideoCard = ({ videoId, title, label, labelStyle, distroLink, listenText, 
         <span className={`tracking-[0.2em] uppercase leading-none ${compact ? 'text-[9px] sm:text-[10px]' : 'text-[10px] sm:text-xs'}`} style={labelStyle}>{label}</span>
         <p className={`font-serif italic text-white leading-tight ${compact ? 'text-xs sm:text-sm' : 'text-base sm:text-lg'}`}>{title}</p>
         <button type="button" onClick={() => setExpanded(true)} className={thumbWrapClass}>
-          <img src={thumb} alt="" decoding="async" className="w-full h-full object-cover" />
+          <img src={thumb} alt={title} decoding="async" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
             <div className={`rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 group-hover:scale-110 transition-transform ${compact ? 'w-9 h-9 sm:w-10 sm:h-10' : 'w-12 h-12 sm:w-14 sm:h-14'}`}>
               <Play size={compact ? 18 : 22} className="fill-white text-white ml-0.5" />
@@ -344,7 +344,7 @@ const HomePage = ({ videoRef, onNavigate }) => {
       >
         {/* Top block: subtitle, logo, tagline, CTA — compact vertical rhythm */}
         <div className="shrink-0 flex flex-col items-center gap-1 sm:gap-1.5 md:gap-2 animate-slide-up">
-          <h1 className="sr-only">SHAAYA – Daniel Shaaya, Handpan Artist & Musician</h1>
+          <h1 className="sr-only">SHAAYA – דניאל שעיה, אמן האנדפאן והפנטם | Daniel Shaaya, Handpan Artist & Musician</h1>
           <p className="tracking-[0.18em] sm:tracking-[0.25em] text-[10px] sm:text-xs uppercase drop-shadow-lg leading-tight" style={{ color: GOLD }}>{t('home.subtitle')}</p>
           <img
             src="/logo-transparent.png"
@@ -1081,6 +1081,12 @@ const App = () => {
     return () => window.removeEventListener('scroll', h);
   }, []);
 
+  // Keep document.title in sync with the visible section and language (SEO / sharing / history)
+  const currentSection = isMobile ? activeSection : activePage;
+  useEffect(() => {
+    document.title = t(`seo.titles.${currentSection}`, { defaultValue: 'SHAAYA | Handpan Artist' });
+  }, [currentSection, i18n.language, t]);
+
   // Mobile: track which section is on screen (scroll-spy) and whether the hero is visible
   useEffect(() => {
     if (!isMobile || !('IntersectionObserver' in window)) return;
@@ -1207,11 +1213,12 @@ const App = () => {
           <div className="cursor-pointer opacity-90 hover:opacity-100 transition-opacity" onClick={() => navigateTo('home')}><Logo /></div>
           <div className="hidden lg:flex gap-4 xl:gap-8 text-xs font-light tracking-[0.15em] uppercase text-zinc-400 items-center">
             {menuItems.map((item) => (
-              <button key={item.id} onClick={() => navigateTo(item.id)}
+              <a key={item.id} href={`#${item.id}`}
+                onClick={(e) => { e.preventDefault(); navigateTo(item.id); }}
                 className={`hover:text-white transition-colors relative group ${!isMobile && activePage === item.id ? 'text-white' : ''}`}>
                 {item.label}
                 <span className={`absolute -bottom-2 ${isRtl ? 'right-0' : 'left-0'} h-[1px] transition-all duration-300 ${!isMobile && activePage === item.id ? 'w-full' : 'w-0 group-hover:w-full'}`} style={{ backgroundColor: GOLD }}></span>
-              </button>
+              </a>
             ))}
             <LanguageSwitcher className="ml-4" />
           </div>
@@ -1231,11 +1238,12 @@ const App = () => {
             {menuItems.map((item) => {
               const isActive = isMobile ? activeSection === item.id : activePage === item.id;
               return (
-                <button key={item.id} onClick={() => navigateTo(item.id)}
+                <a key={item.id} href={`#${item.id}`}
+                  onClick={(e) => { e.preventDefault(); navigateTo(item.id); }}
                   className={`transition-colors min-h-[44px] flex items-center ${isActive ? 'underline underline-offset-8 decoration-1' : 'text-zinc-400'}`}
                   style={isActive ? { color: GOLD } : {}}>
                   {item.label}
-                </button>
+                </a>
               );
             })}
             <div className="pt-4 sm:pt-8"><SocialLinks size={22} /></div>
@@ -1248,10 +1256,23 @@ const App = () => {
       {/* Footer - shown on non-home desktop pages, or always on mobile after scroll */}
       {(isMobile || activePage !== 'home') && (
         <footer className="py-6 sm:py-8 bg-black border-t border-white/5 safe-bottom">
-          <div className="container mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-zinc-500 text-xs tracking-widest">&copy; {new Date().getFullYear()} SHAAYA. {t('footer.rights')}</p>
-            <SocialLinks size={16} className="opacity-50 hover:opacity-100 transition-opacity" />
-            <div className="opacity-30 hover:opacity-100 transition-opacity cursor-pointer" onClick={() => navigateTo('home')}><Logo className="h-6 sm:h-8" /></div>
+          <div className="container mx-auto px-4 sm:px-6 flex flex-col items-center gap-4">
+            {/* Crawlable section links (real anchors, not JS buttons) */}
+            <nav aria-label="Footer" className="flex flex-wrap justify-center gap-x-4 gap-y-1.5">
+              {menuItems.map((item) => (
+                <a key={item.id} href={`#${item.id}`}
+                  onClick={(e) => { e.preventDefault(); navigateTo(item.id); }}
+                  className="text-zinc-500 hover:text-white text-[11px] tracking-widest uppercase transition-colors">
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+            <p className="text-zinc-600 text-[11px] font-light text-center max-w-2xl leading-relaxed">{t('footer.tagline')}</p>
+            <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-zinc-500 text-xs tracking-widest">&copy; {new Date().getFullYear()} SHAAYA. {t('footer.rights')}</p>
+              <SocialLinks size={16} className="opacity-50 hover:opacity-100 transition-opacity" />
+              <div className="opacity-30 hover:opacity-100 transition-opacity cursor-pointer" onClick={() => navigateTo('home')}><Logo className="h-6 sm:h-8" /></div>
+            </div>
           </div>
         </footer>
       )}
