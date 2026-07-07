@@ -431,19 +431,6 @@ const HomePage = ({ videoRef, onNavigate }) => {
           </p>
           <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 md:gap-8">
             <a
-              href={YISHAMA_PARTNER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center justify-center min-h-[40px] w-[min(30%,120px)] sm:w-[min(30%,160px)] md:w-[190px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
-              aria-label={t('home.partnerAltYishama')}
-            >
-              <img
-                src="/partners/yishama.png"
-                alt={t('home.partnerAltYishama')}
-                className="h-8 sm:h-9 md:h-10 w-full max-h-10 object-contain object-center opacity-95 transition-all duration-300 ease-out drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] group-hover:opacity-100 group-hover:brightness-110 group-hover:saturate-125 group-hover:drop-shadow-[0_0_22px_rgba(201,165,90,0.55)]"
-              />
-            </a>
-            <a
               href={KALIMBA_PARTNER_URL}
               target="_blank"
               rel="noopener noreferrer"
@@ -453,6 +440,19 @@ const HomePage = ({ videoRef, onNavigate }) => {
               <img
                 src="/partners/kalimba-dark.png"
                 alt={t('home.partnerAltKalimba')}
+                className="h-8 sm:h-9 md:h-10 w-full max-h-10 object-contain object-center opacity-95 transition-all duration-300 ease-out drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] group-hover:opacity-100 group-hover:brightness-110 group-hover:saturate-125 group-hover:drop-shadow-[0_0_22px_rgba(201,165,90,0.55)]"
+              />
+            </a>
+            <a
+              href={YISHAMA_PARTNER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-center min-h-[40px] w-[min(30%,120px)] sm:w-[min(30%,160px)] md:w-[190px] focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded"
+              aria-label={t('home.partnerAltYishama')}
+            >
+              <img
+                src="/partners/yishama.png"
+                alt={t('home.partnerAltYishama')}
                 className="h-8 sm:h-9 md:h-10 w-full max-h-10 object-contain object-center opacity-95 transition-all duration-300 ease-out drop-shadow-[0_2px_14px_rgba(0,0,0,0.75)] group-hover:opacity-100 group-hover:brightness-110 group-hover:saturate-125 group-hover:drop-shadow-[0_0_22px_rgba(201,165,90,0.55)]"
               />
             </a>
